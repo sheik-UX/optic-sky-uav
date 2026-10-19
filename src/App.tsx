@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
+import { CinematicReveal } from './components/CinematicReveal';
 import { Introduction } from './components/Introduction';
 import { Services } from './components/Services';
 import { ProjectIndex } from './components/ProjectIndex';
@@ -93,7 +94,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#121512] text-[#F4F0E7] flex flex-col selection:bg-[#19352A] selection:text-[#F4F0E7]">
+    <div className="min-h-screen bg-[#13140e] text-[#f4f3e8] flex flex-col selection:bg-[#ebfc72] selection:text-[#13140e] font-sans">
       {/* Top Header Navigation */}
       <Header onNavigate={handleScrollTo} />
 
@@ -104,8 +105,12 @@ export const App: React.FC = () => {
           onDiscussProject={() => handleScrollTo('contact')}
         />
 
+        {/* Cinematic Scroll-Driven Portfolio Reveal */}
+        <CinematicReveal />
+
         {/* Section 03 — Introduction */}
         <Introduction />
+
 
         {/* Section 04 — Services */}
         <Services />

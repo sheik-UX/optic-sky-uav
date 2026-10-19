@@ -27,56 +27,56 @@ export const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-28 sm:py-36 bg-[#141713] relative border-t border-[#232D24]">
+    <section id="contact" className="py-28 sm:py-36 bg-[#13140e] relative border-t border-[#404040]">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           {/* Left Column: Heading & Confirmed Contact Info */}
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
-              <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#C2A676] font-semibold mb-3">
-                <span className="w-6 h-[1px] bg-[#C2A676]" />
+              <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#ebfc72] font-mono mb-3">
+                <span className="w-6 h-[1px] bg-[#ebfc72]" />
                 <span>START A CONVERSATION</span>
               </div>
 
-              <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-light text-[#F4F0E7] leading-[1.1] mb-6">
+              <h2 className="font-sans text-4xl sm:text-5xl lg:text-6xl font-normal text-[#f4f3e8] tracking-[-0.03em] leading-[0.95] mb-6">
                 LET'S MAKE <br />
                 THE VIEW <br />
-                <span className="italic font-normal text-[#C2A676]">IMPOSSIBLE</span> <br />
+                <span className="text-[#ebfc72]">IMPOSSIBLE</span> <br />
                 TO FORGET.
               </h2>
 
-              <p className="text-base text-[#D9D5CA]/90 font-light leading-relaxed mb-8 max-w-md">
+              <p className="text-base text-[#f4f3e8]/90 font-normal leading-[1.62] mb-8 max-w-md">
                 Have a course, property, or project worth seeing from a different perspective? Let's discuss your next aerial photography or video project.
               </p>
 
               {/* Verified Contact Details Box */}
-              <div className="space-y-4 pt-6 border-t border-[#263128]">
+              <div className="space-y-4 pt-6 border-t border-[#404040]">
                 <a
                   href={`tel:${BRAND.phoneRaw}`}
-                  className="flex items-center gap-3 p-3.5 rounded-sm bg-[#181D18] border border-[#263128] hover:border-[#C2A676]/60 transition-colors group"
+                  className="flex items-center gap-3 p-3.5 rounded-none bg-[#13140e] border border-[#404040] hover:border-[#ebfc72]/80 transition-colors group"
                 >
-                  <div className="p-2 rounded-sm bg-[#19352A] text-[#C2A676] group-hover:scale-110 transition-transform">
+                  <div className="p-2 rounded-[3.6px] bg-[#13140e] text-[#ebfc72] border border-[#404040] group-hover:bg-[#ebfc72] group-hover:text-[#13140e] transition-colors">
                     <Phone size={16} />
                   </div>
                   <div>
-                    <span className="text-[10px] uppercase tracking-wider text-[#8E8A80] block font-semibold">
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#84837b] block font-normal">
                       Direct Telephone
                     </span>
-                    <span className="text-sm font-medium text-[#F4F0E7] group-hover:text-[#C2A676] transition-colors">
+                    <span className="text-sm font-sans font-normal text-[#f4f3e8] group-hover:text-[#ebfc72] transition-colors">
                       {BRAND.phone}
                     </span>
                   </div>
                 </a>
 
-                <div className="flex items-center gap-3 p-3.5 rounded-sm bg-[#181D18] border border-[#263128]">
-                  <div className="p-2 rounded-sm bg-[#19352A] text-[#C2A676]">
+                <div className="flex items-center gap-3 p-3.5 rounded-none bg-[#13140e] border border-[#404040]">
+                  <div className="p-2 rounded-[3.6px] bg-[#13140e] text-[#ebfc72] border border-[#404040]">
                     <MapPin size={16} />
                   </div>
                   <div>
-                    <span className="text-[10px] uppercase tracking-wider text-[#8E8A80] block font-semibold">
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#84837b] block font-normal">
                       Primary Location
                     </span>
-                    <span className="text-sm font-medium text-[#F4F0E7]">
+                    <span className="text-sm font-sans font-normal text-[#f4f3e8]">
                       {BRAND.location}
                     </span>
                   </div>
@@ -84,16 +84,16 @@ export const Contact: React.FC = () => {
 
                 <a
                   href={`mailto:${BRAND.email}`}
-                  className="flex items-center gap-3 p-3.5 rounded-sm bg-[#181D18] border border-[#263128] hover:border-[#C2A676]/60 transition-colors group"
+                  className="flex items-center gap-3 p-3.5 rounded-none bg-[#13140e] border border-[#404040] hover:border-[#ebfc72]/80 transition-colors group"
                 >
-                  <div className="p-2 rounded-sm bg-[#19352A] text-[#C2A676] group-hover:scale-110 transition-transform">
+                  <div className="p-2 rounded-[3.6px] bg-[#13140e] text-[#ebfc72] border border-[#404040] group-hover:bg-[#ebfc72] group-hover:text-[#13140e] transition-colors">
                     <Mail size={16} />
                   </div>
                   <div>
-                    <span className="text-[10px] uppercase tracking-wider text-[#8E8A80] block font-semibold">
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#84837b] block font-normal">
                       Inquiries
                     </span>
-                    <span className="text-sm font-medium text-[#F4F0E7] group-hover:text-[#C2A676] transition-colors">
+                    <span className="text-sm font-sans font-normal text-[#f4f3e8] group-hover:text-[#ebfc72] transition-colors">
                       {BRAND.email}
                     </span>
                   </div>
@@ -101,28 +101,28 @@ export const Contact: React.FC = () => {
               </div>
             </div>
 
-            <div className="pt-8 text-xs text-[#8E8A80] hidden lg:block">
+            <div className="pt-8 text-xs text-[#84837b] font-mono leading-[1.62] hidden lg:block">
               Deployments available regionally throughout Nevada, California, Arizona, Wisconsin, and nationwide for scheduled commercial productions.
             </div>
           </div>
 
           {/* Right Column: Project Inquiry Form */}
-          <div className="lg:col-span-7 bg-[#181D18] border border-[#273229] p-8 sm:p-10 rounded-sm shadow-2xl relative">
+          <div className="lg:col-span-7 bg-[#13140e] border border-[#404040] p-8 sm:p-10 rounded-none relative">
             {submitted ? (
               <div className="py-16 text-center flex flex-col items-center">
-                <div className="w-16 h-16 rounded-full bg-[#19352A] text-[#C2A676] flex items-center justify-center border border-[#C2A676]/40 mb-6">
+                <div className="w-16 h-16 rounded-full bg-[#13140e] text-[#ebfc72] flex items-center justify-center border border-[#ebfc72]/60 mb-6">
                   <CheckCircle2 size={32} />
                 </div>
-                <h3 className="font-serif text-3xl text-[#F4F0E7] font-medium mb-3">
+                <h3 className="font-sans text-3xl text-[#f4f3e8] font-normal tracking-[-0.03em] mb-3">
                   Inquiry Dispatched
                 </h3>
-                <p className="text-sm text-[#D9D5CA]/90 font-light max-w-md leading-relaxed mb-8">
+                <p className="text-sm text-[#f4f3e8]/90 font-normal max-w-md leading-[1.62] mb-8">
                   Thank you for reaching out to Optic Sky UAV. Your project details have been prepared for dispatch to our production team.
                 </p>
                 <button
                   type="button"
                   onClick={() => setSubmitted(false)}
-                  className="text-xs uppercase tracking-widest text-[#C2A676] hover:underline"
+                  className="text-xs uppercase font-mono tracking-widest text-[#ebfc72] hover:underline"
                 >
                   Submit another project inquiry
                 </button>
@@ -130,17 +130,17 @@ export const Contact: React.FC = () => {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <h3 className="font-serif text-2xl text-[#F4F0E7] font-medium mb-1">
+                  <h3 className="font-sans text-2xl text-[#f4f3e8] font-normal tracking-[-0.03em] mb-1">
                     Project Discussion
                   </h3>
-                  <p className="text-xs text-[#8E8A80]">
+                  <p className="text-xs text-[#84837b] font-normal">
                     Tell us about your property, timeline, or documentation requirements.
                   </p>
                 </div>
 
                 {/* Project Type Selector */}
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-[#D9D5CA] font-medium mb-2">
+                  <label className="block text-xs uppercase font-mono tracking-widest text-[#84837b] mb-2">
                     Service Sector
                   </label>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
@@ -153,10 +153,10 @@ export const Contact: React.FC = () => {
                         key={type}
                         type="button"
                         onClick={() => setFormData({ ...formData, projectType: type })}
-                        className={`p-3 text-left rounded-sm text-xs border transition-all duration-200 ${
+                        className={`p-3 text-left rounded-[3.6px] text-xs font-mono border transition-all duration-200 ${
                           formData.projectType === type
-                            ? 'bg-[#19352A] text-[#F4F0E7] border-[#C2A676]'
-                            : 'bg-[#141713] text-[#8E8A80] border-[#263128] hover:text-[#D9D5CA]'
+                            ? 'bg-[#ebfc72] text-[#13140e] border-[#ebfc72] font-medium'
+                            : 'bg-[#13140e] text-[#84837b] border-[#404040] hover:text-[#f4f3e8] hover:border-[#84837b]'
                         }`}
                       >
                         {type}
@@ -165,9 +165,9 @@ export const Contact: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-xs uppercase tracking-wider text-[#D9D5CA] font-medium mb-2">
+                    <label className="block text-xs uppercase font-mono tracking-widest text-[#84837b] mb-2">
                       Your Name *
                     </label>
                     <input
@@ -176,12 +176,12 @@ export const Contact: React.FC = () => {
                       placeholder="Jane Doe"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full bg-[#121512] border border-[#273229] focus:border-[#C2A676] rounded-sm px-4 py-3 text-sm text-[#F4F0E7] placeholder-[#555] focus:outline-none transition-colors"
+                      className="w-full bg-transparent border-b border-[#404040] focus:border-[#ebfc72] px-0 py-2.5 text-sm text-[#f4f3e8] placeholder-[#84837b] focus:outline-none transition-colors"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs uppercase tracking-wider text-[#D9D5CA] font-medium mb-2">
+                    <label className="block text-xs uppercase font-mono tracking-widest text-[#84837b] mb-2">
                       Email Address *
                     </label>
                     <input
@@ -190,14 +190,14 @@ export const Contact: React.FC = () => {
                       placeholder="jane@company.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-[#121512] border border-[#273229] focus:border-[#C2A676] rounded-sm px-4 py-3 text-sm text-[#F4F0E7] placeholder-[#555] focus:outline-none transition-colors"
+                      className="w-full bg-transparent border-b border-[#404040] focus:border-[#ebfc72] px-0 py-2.5 text-sm text-[#f4f3e8] placeholder-[#84837b] focus:outline-none transition-colors"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-xs uppercase tracking-wider text-[#D9D5CA] font-medium mb-2">
+                    <label className="block text-xs uppercase font-mono tracking-widest text-[#84837b] mb-2">
                       Phone Number
                     </label>
                     <input
@@ -205,12 +205,12 @@ export const Contact: React.FC = () => {
                       placeholder="(555) 000-0000"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full bg-[#121512] border border-[#273229] focus:border-[#C2A676] rounded-sm px-4 py-3 text-sm text-[#F4F0E7] placeholder-[#555] focus:outline-none transition-colors"
+                      className="w-full bg-transparent border-b border-[#404040] focus:border-[#ebfc72] px-0 py-2.5 text-sm text-[#f4f3e8] placeholder-[#84837b] focus:outline-none transition-colors"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs uppercase tracking-wider text-[#D9D5CA] font-medium mb-2">
+                    <label className="block text-xs uppercase font-mono tracking-widest text-[#84837b] mb-2">
                       Project Location / Facility
                     </label>
                     <input
@@ -218,13 +218,13 @@ export const Contact: React.FC = () => {
                       placeholder="City, State or Course Name"
                       value={formData.location}
                       onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                      className="w-full bg-[#121512] border border-[#273229] focus:border-[#C2A676] rounded-sm px-4 py-3 text-sm text-[#F4F0E7] placeholder-[#555] focus:outline-none transition-colors"
+                      className="w-full bg-transparent border-b border-[#404040] focus:border-[#ebfc72] px-0 py-2.5 text-sm text-[#f4f3e8] placeholder-[#84837b] focus:outline-none transition-colors"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-[#D9D5CA] font-medium mb-2">
+                  <label className="block text-xs uppercase font-mono tracking-widest text-[#84837b] mb-2">
                     Project Vision & Objectives *
                   </label>
                   <textarea
@@ -233,15 +233,15 @@ export const Contact: React.FC = () => {
                     placeholder="Briefly describe what you'd like to capture (e.g. hole-by-hole drone sweep, monthly construction progression, commercial real estate marketing stills)..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full bg-[#121512] border border-[#273229] focus:border-[#C2A676] rounded-sm px-4 py-3 text-sm text-[#F4F0E7] placeholder-[#555] focus:outline-none transition-colors resize-none"
+                    className="w-full bg-transparent border-b border-[#404040] focus:border-[#ebfc72] px-0 py-2.5 text-sm text-[#f4f3e8] placeholder-[#84837b] focus:outline-none transition-colors resize-none"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full inline-flex items-center justify-center gap-3 py-4 rounded-sm bg-[#19352A] hover:bg-[#224839] text-[#F4F0E7] font-semibold text-xs uppercase tracking-[0.22em] border border-[#345947] shadow-xl hover:shadow-[#19352A]/50 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C2A676]"
+                  className="w-full inline-flex items-center justify-center gap-3 py-4 rounded-[3.6px] bg-[#ebfc72] hover:bg-[#bacd31] text-[#13140e] font-mono font-medium text-xs uppercase tracking-widest transition-all duration-300 focus:outline-none"
                 >
-                  <Send size={14} className="text-[#C2A676]" />
+                  <Send size={14} className="text-[#13140e]" />
                   <span>DISCUSS YOUR PROJECT</span>
                 </button>
               </form>

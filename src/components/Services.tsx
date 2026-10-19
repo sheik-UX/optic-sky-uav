@@ -4,19 +4,19 @@ import { SERVICES } from '../data/content';
 
 export const Services: React.FC = () => {
   return (
-    <section id="services" className="py-28 sm:py-36 bg-[#141713] relative">
+    <section id="services" className="py-28 sm:py-36 bg-[#13140e] relative border-t border-[#404040]">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Section Header */}
         <div className="max-w-2xl mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#C2A676] font-semibold mb-3">
-            <span className="w-6 h-[1px] bg-[#C2A676]" />
+          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#ebfc72] font-mono mb-3">
+            <span className="w-6 h-[1px] bg-[#ebfc72]" />
             <span>DISCIPLINES & CAPABILITIES</span>
           </div>
-          <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-light text-[#F4F0E7] leading-tight mb-4">
+          <h2 className="font-sans text-4xl sm:text-5xl lg:text-6xl font-normal text-[#f4f3e8] tracking-[-0.03em] leading-[0.95] mb-4">
             COMMERCIAL AERIAL <br />
-            <span className="italic font-normal text-[#D9D5CA]">SERVICES</span>
+            <span className="text-[#84837b]">SERVICES</span>
           </h2>
-          <p className="text-base text-[#D9D5CA]/80 font-light leading-relaxed">
+          <p className="text-base text-[#f4f3e8]/80 font-normal leading-[1.62]">
             Tailored visual storytelling and rigorous aerial documentation delivered with commercial precision.
           </p>
         </div>
@@ -26,21 +26,21 @@ export const Services: React.FC = () => {
           {SERVICES.map((service) => (
             <div
               key={service.number}
-              className="group relative flex flex-col bg-[#181D18] border border-[#273229] hover:border-[#C2A676]/60 rounded-sm overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-[#19352A]/20"
+              className="group relative flex flex-col bg-[#13140e] border border-[#404040] hover:border-[#ebfc72]/80 rounded-none overflow-hidden transition-all duration-500"
             >
               {/* Media Preview Container */}
-              <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-[#111]">
+              <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-[#13140e]">
                 <img
                   src={service.image}
                   alt={service.title}
                   className="w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover:scale-105"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#181D18] via-[#181D18]/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#13140e] via-[#13140e]/40 to-transparent" />
                 
                 {/* Number Badge */}
-                <div className="absolute top-4 left-4 px-3 py-1 bg-[#121512]/80 backdrop-blur-md border border-[#2D3A31] rounded-sm">
-                  <span className="font-serif text-sm font-semibold tracking-widest text-[#C2A676]">
+                <div className="absolute top-4 left-4 px-3 py-1 bg-[#13140e]/90 backdrop-blur-md border border-[#404040] rounded-[3.6px]">
+                  <span className="font-mono text-xs font-normal tracking-widest text-[#ebfc72]">
                     {service.number}
                   </span>
                 </div>
@@ -49,21 +49,21 @@ export const Services: React.FC = () => {
               {/* Service Content */}
               <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 className="font-serif text-2xl lg:text-3xl font-medium text-[#F4F0E7] mb-2 group-hover:text-[#C2A676] transition-colors duration-300">
+                  <h3 className="font-sans text-2xl lg:text-3xl font-normal text-[#f4f3e8] tracking-[-0.03em] mb-2 group-hover:text-[#ebfc72] transition-colors duration-300">
                     {service.title}
                   </h3>
-                  <p className="text-xs uppercase tracking-wider text-[#C2A676] font-medium mb-4">
+                  <p className="font-mono text-xs uppercase tracking-widest text-[#ebfc72] mb-4">
                     {service.tagline}
                   </p>
-                  <p className="text-sm text-[#D9D5CA]/80 leading-relaxed font-light mb-6">
+                  <p className="text-sm text-[#84837b] leading-[1.62] font-normal mb-6">
                     {service.description}
                   </p>
 
                   {/* Highlights Bullet List */}
-                  <ul className="space-y-2.5 pt-4 border-t border-[#263128] mb-6">
+                  <ul className="space-y-2.5 pt-4 border-t border-[#404040] mb-6">
                     {service.highlights.map((highlight, hIdx) => (
-                      <li key={hIdx} className="flex items-start gap-2.5 text-xs text-[#8E8A80]">
-                        <CheckCircle2 size={13} className="text-[#C2A676] shrink-0 mt-0.5" />
+                      <li key={hIdx} className="flex items-start gap-2.5 text-xs text-[#84837b] font-mono">
+                        <CheckCircle2 size={13} className="text-[#ebfc72] shrink-0 mt-0.5" />
                         <span>{highlight}</span>
                       </li>
                     ))}
@@ -72,10 +72,10 @@ export const Services: React.FC = () => {
 
                 <a
                   href="#contact"
-                  className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-semibold text-[#D9D5CA] group-hover:text-[#C2A676] transition-colors pt-4 border-t border-[#263128]"
+                  className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#f4f3e8] group-hover:text-[#ebfc72] transition-colors pt-4 border-t border-[#404040]"
                 >
                   <span>Inquire for {service.title.split('&')[0].trim()}</span>
-                  <ArrowUpRight size={13} className="transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  <ArrowUpRight size={13} className="text-[#ebfc72] transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </a>
               </div>
             </div>

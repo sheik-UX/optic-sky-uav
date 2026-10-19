@@ -41,17 +41,17 @@ export const Header: React.FC<HeaderProps> = () => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           scrolled
-            ? 'bg-[#121512]/90 backdrop-blur-md border-b border-[#2D3A31]/50 py-3.5 shadow-2xl'
-            : 'bg-gradient-to-b from-[#121512]/80 via-[#121512]/40 to-transparent py-5'
+            ? 'bg-[#13140e]/95 backdrop-blur-md border-b border-[#404040] py-3.5'
+            : 'bg-gradient-to-b from-[#13140e]/90 via-[#13140e]/40 to-transparent py-5'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between">
+        <div className="max-w-[1200px] mx-auto px-6 sm:px-8 flex items-center justify-between">
           {/* Logo / Brand Wordmark */}
           <a
             href="#"
-            className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C2A676] rounded-sm"
+            className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ebfc72] rounded-[3.6px]"
             aria-label="Optic Sky UAV Home"
           >
             <img
@@ -60,11 +60,11 @@ export const Header: React.FC<HeaderProps> = () => {
               className="h-8 md:h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />
             <div className="flex flex-col">
-              <span className="font-serif tracking-widest uppercase text-base md:text-lg font-medium text-[#F4F0E7]">
-                Optic Sky
+              <span className="font-sans tracking-tight text-base md:text-lg font-semibold text-[#f4f3e8]">
+                OPTIC SKY
               </span>
-              <span className="text-[9px] uppercase tracking-[0.25em] text-[#C2A676] font-sans -mt-1 font-semibold">
-                UAV Production
+              <span className="text-[10px] font-mono tracking-widest text-[#ebfc72] uppercase -mt-0.5">
+                UAV // FIELD TERMINAL
               </span>
             </div>
           </a>
@@ -76,10 +76,10 @@ export const Header: React.FC<HeaderProps> = () => {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href)}
-                className="text-xs uppercase tracking-[0.2em] font-medium text-[#D9D5CA] hover:text-[#F4F0E7] transition-colors relative py-1 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C2A676] rounded-sm"
+                className="font-mono text-xs uppercase tracking-wider text-[#84837b] hover:text-[#f4f3e8] transition-colors relative py-1 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ebfc72] rounded-[3.6px]"
               >
                 {link.name}
-                <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#C2A676] transition-all duration-300 group-hover:w-full" />
+                <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#ebfc72] transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
           </nav>
@@ -88,21 +88,22 @@ export const Header: React.FC<HeaderProps> = () => {
           <div className="hidden sm:flex items-center gap-4">
             <a
               href={`tel:${BRAND.phoneRaw}`}
-              className="text-xs font-sans text-[#D9D5CA] hover:text-[#C2A676] transition-colors flex items-center gap-1.5 px-3 py-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C2A676] rounded-sm"
+              className="font-mono text-xs text-[#84837b] hover:text-[#ebfc72] transition-colors flex items-center gap-1.5 px-3 py-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ebfc72] rounded-[3.6px]"
               title="Call Optic Sky UAV"
             >
-              <Phone size={13} className="text-[#C2A676]" />
+              <Phone size={13} className="text-[#ebfc72]" />
               <span className="tracking-wider">{BRAND.phone}</span>
             </a>
             <a
               href="#contact"
               onClick={(e) => handleLinkClick(e, '#contact')}
-              className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] font-semibold bg-[#19352A] hover:bg-[#224839] text-[#F4F0E7] border border-[#2D4D3D] px-4 py-2.5 rounded-sm transition-all duration-300 shadow-sm hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C2A676]"
+              className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider font-medium bg-[#ebfc72] hover:bg-[#bacd31] text-[#13140e] px-4 py-2.5 rounded-[3.6px] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ebfc72]"
             >
-              <span>Discuss a Project</span>
-              <ArrowUpRight size={14} className="text-[#C2A676]" />
+              <span>Discuss Project</span>
+              <ArrowUpRight size={14} className="text-[#13140e]" />
             </a>
           </div>
+
 
           {/* Mobile Menu Toggle Button */}
           <button

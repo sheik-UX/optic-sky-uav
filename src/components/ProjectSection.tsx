@@ -18,41 +18,41 @@ export const ProjectSection: React.FC<ProjectSectionProps> = ({
   return (
     <article
       id={project.id}
-      className="py-24 sm:py-32 border-t border-[#232D24] relative bg-[#121512] overflow-hidden"
+      className="py-24 sm:py-32 border-t border-[#404040] relative bg-[#13140e] overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Project Header Info */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12 sm:mb-16">
           <div className="max-w-3xl">
-            <div className="flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#C2A676] font-semibold mb-3">
-              <span className="font-mono text-sm">{projectNumber}</span>
-              <span className="w-6 h-[1px] bg-[#C2A676]" />
+            <div className="flex items-center gap-3 text-xs uppercase tracking-widest text-[#ebfc72] font-mono mb-3">
+              <span className="font-mono text-xs text-[#ebfc72]">{projectNumber}</span>
+              <span className="w-6 h-[1px] bg-[#ebfc72]" />
               <span>{project.eyebrow}</span>
             </div>
 
-            <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-light text-[#F4F0E7] tracking-tight mb-4">
+            <h2 className="font-sans text-4xl sm:text-5xl lg:text-6xl font-normal text-[#f4f3e8] tracking-[-0.03em] leading-[0.95] mb-4">
               {project.title}
             </h2>
 
-            <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#8E8A80] mb-6 font-sans">
-              <MapPin size={13} className="text-[#C2A676]" />
+            <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-[#84837b] mb-6">
+              <MapPin size={13} className="text-[#ebfc72]" />
               <span>{project.location}</span>
             </div>
 
-            <p className="text-base sm:text-lg text-[#D9D5CA]/90 font-light leading-relaxed max-w-2xl">
+            <p className="text-base sm:text-lg text-[#f4f3e8]/90 font-normal leading-[1.62] max-w-2xl">
               {project.description}
             </p>
           </div>
 
           {/* Project Highlights / Metadata */}
-          <div className="flex flex-col gap-2 p-5 rounded-sm bg-[#161B16] border border-[#232D24] shrink-0 lg:max-w-xs w-full">
-            <span className="text-[10px] uppercase tracking-[0.25em] text-[#8E8A80] font-semibold">
+          <div className="flex flex-col gap-2 p-5 rounded-none bg-[#13140e] border border-[#404040] shrink-0 lg:max-w-xs w-full">
+            <span className="text-[10px] uppercase font-mono tracking-widest text-[#84837b] font-medium">
               Project Scope & Assets
             </span>
-            <ul className="space-y-1.5 pt-2 border-t border-[#232D24]">
+            <ul className="space-y-1.5 pt-2 border-t border-[#404040]">
               {project.keyDetails.map((detail, dIdx) => (
-                <li key={dIdx} className="flex items-center gap-2 text-xs text-[#D9D5CA] font-light">
-                  <CheckCircle2 size={12} className="text-[#C2A676] shrink-0" />
+                <li key={dIdx} className="flex items-center gap-2 text-xs font-mono text-[#f4f3e8]">
+                  <CheckCircle2 size={12} className="text-[#ebfc72] shrink-0" />
                   <span>{detail}</span>
                 </li>
               ))}
@@ -64,7 +64,7 @@ export const ProjectSection: React.FC<ProjectSectionProps> = ({
         <div className="mb-14 sm:mb-18">
           <div
             onClick={() => onOpenLightbox(project.photos, 0, project.title)}
-            className="group relative w-full h-[55vh] sm:h-[65vh] lg:h-[75vh] rounded-sm overflow-hidden bg-[#181D18] cursor-pointer border border-[#273229] hover:border-[#C2A676]/60 transition-all duration-500 shadow-2xl"
+            className="group relative w-full h-[55vh] sm:h-[65vh] lg:h-[75vh] rounded-none overflow-hidden bg-[#13140e] cursor-pointer border border-[#404040] hover:border-[#ebfc72]/80 transition-all duration-500"
           >
             <img
               src={project.heroImage.src}
@@ -73,23 +73,23 @@ export const ProjectSection: React.FC<ProjectSectionProps> = ({
               loading="lazy"
             />
             {/* Subtle Gradient Overlays */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#121512]/90 via-[#121512]/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#13140e]/95 via-[#13140e]/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
 
             {/* Bottom Floating Bar */}
             <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between gap-4 z-10">
               <div>
-                <span className="inline-block px-2.5 py-1 rounded-xs bg-[#19352A]/90 text-[#F4F0E7] text-[10px] uppercase tracking-[0.2em] font-semibold border border-[#C2A676]/40 mb-2">
+                <span className="inline-block px-2.5 py-1 rounded-[3.6px] bg-[#13140e]/90 text-[#ebfc72] text-[10px] uppercase font-mono tracking-widest border border-[#404040] mb-2">
                   Dominant Hero Plate
                 </span>
-                <p className="text-sm sm:text-base md:text-lg font-serif text-[#F4F0E7] font-medium drop-shadow-md">
+                <p className="text-sm sm:text-base md:text-lg font-sans text-[#f4f3e8] font-normal tracking-[-0.02em]">
                   {project.heroImage.caption}
                 </p>
-                <p className="text-xs text-[#8E8A80] font-mono mt-0.5">
+                <p className="text-xs text-[#84837b] font-mono mt-0.5">
                   Resolution: {project.heroImage.width} × {project.heroImage.height}px • Ratio: {project.heroImage.aspectRatio}
                 </p>
               </div>
 
-              <div className="p-3 rounded-full bg-[#121512]/80 backdrop-blur-md text-[#F4F0E7] border border-[#2D3A31] group-hover:bg-[#19352A] group-hover:text-[#C2A676] transition-colors shrink-0">
+              <div className="p-3 rounded-[3.6px] bg-[#13140e]/90 text-[#f4f3e8] border border-[#404040] group-hover:bg-[#ebfc72] group-hover:text-[#13140e] group-hover:border-[#ebfc72] transition-colors shrink-0">
                 <Maximize2 size={16} />
               </div>
             </div>
@@ -98,11 +98,11 @@ export const ProjectSection: React.FC<ProjectSectionProps> = ({
 
         {/* 2. Asymmetrical Editorial Photo Gallery */}
         <div className="mb-20 sm:mb-24">
-          <div className="flex items-center justify-between pb-4 mb-8 border-b border-[#232D24]">
-            <h3 className="font-serif text-2xl sm:text-3xl font-light text-[#F4F0E7]">
+          <div className="flex items-center justify-between pb-4 mb-8 border-b border-[#404040]">
+            <h3 className="font-sans text-2xl sm:text-3xl font-normal text-[#f4f3e8] tracking-[-0.03em]">
               Editorial Photo Gallery
             </h3>
-            <span className="text-xs font-mono text-[#8E8A80]">
+            <span className="text-xs font-mono text-[#84837b]">
               {project.photos.length} Verified High-Resolution Plates
             </span>
           </div>
@@ -111,10 +111,6 @@ export const ProjectSection: React.FC<ProjectSectionProps> = ({
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-5 sm:gap-6">
             {project.photos.map((photo, pIdx) => {
               // Asymmetrical rhythm:
-              // For a 12-column grid:
-              // Wide photos get 8 cols or 12 cols
-              // Vertical portrait photos get 4 cols
-              // Standard landscape photos get 6 cols or 4 cols
               let colSpan = "sm:col-span-1 lg:col-span-6";
               let heightClass = "h-72 sm:h-80 md:h-96";
 
@@ -139,7 +135,7 @@ export const ProjectSection: React.FC<ProjectSectionProps> = ({
                 <div
                   key={photo.id}
                   onClick={() => onOpenLightbox(project.photos, pIdx, project.title)}
-                  className={`group relative rounded-sm overflow-hidden bg-[#161B16] border border-[#232D24] hover:border-[#C2A676]/60 cursor-pointer transition-all duration-500 hover:shadow-xl hover:shadow-[#19352A]/20 ${colSpan} ${heightClass}`}
+                  className={`group relative rounded-none overflow-hidden bg-[#13140e] border border-[#404040] hover:border-[#ebfc72]/80 cursor-pointer transition-all duration-500 ${colSpan} ${heightClass}`}
                 >
                   <img
                     src={photo.src}
@@ -149,28 +145,28 @@ export const ProjectSection: React.FC<ProjectSectionProps> = ({
                   />
 
                   {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#121512]/95 via-[#121512]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#13140e]/95 via-[#13140e]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
                     <div className="flex items-center justify-between gap-2">
                       <div>
-                        <p className="text-xs uppercase tracking-wider text-[#C2A676] font-medium">
+                        <p className="text-xs uppercase font-mono tracking-widest text-[#ebfc72]">
                           Plate {pIdx + 1}
                         </p>
-                        <p className="text-sm font-medium text-[#F4F0E7] line-clamp-2">
+                        <p className="text-sm font-sans font-normal text-[#f4f3e8] line-clamp-2">
                           {photo.caption || photo.alt}
                         </p>
-                        <p className="text-[10px] text-[#8E8A80] font-mono mt-1">
+                        <p className="text-[10px] text-[#84837b] font-mono mt-1">
                           {photo.width} × {photo.height}px ({photo.aspectRatio})
                         </p>
                       </div>
 
-                      <div className="p-2 rounded-full bg-[#19352A] text-[#C2A676] border border-[#C2A676]/40 shrink-0">
+                      <div className="p-2 rounded-[3.6px] bg-[#13140e] text-[#ebfc72] border border-[#ebfc72]/60 shrink-0">
                         <Maximize2 size={14} />
                       </div>
                     </div>
                   </div>
 
                   {/* Corner Plate Identifier */}
-                  <div className="absolute top-3 left-3 px-2 py-0.5 rounded-xs bg-[#121512]/75 backdrop-blur-sm border border-[#2D3A31] text-[10px] font-mono text-[#D9D5CA] opacity-80 group-hover:opacity-0 transition-opacity">
+                  <div className="absolute top-3 left-3 px-2 py-0.5 rounded-[3.6px] bg-[#13140e]/85 backdrop-blur-sm border border-[#404040] text-[10px] font-mono text-[#ebfc72] opacity-80 group-hover:opacity-0 transition-opacity">
                     0{pIdx + 1}
                   </div>
                 </div>
@@ -181,17 +177,17 @@ export const ProjectSection: React.FC<ProjectSectionProps> = ({
 
         {/* 3. Independent Video Showcase */}
         <div>
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 mb-8 border-b border-[#232D24]">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 mb-8 border-b border-[#404040]">
             <div>
-              <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#C2A676] font-semibold mb-1">
+              <div className="flex items-center gap-2 text-xs uppercase font-mono tracking-widest text-[#ebfc72] mb-1">
                 <Film size={14} />
                 <span>CINEMATIC DRONE FOOTAGE</span>
               </div>
-              <h3 className="font-serif text-2xl sm:text-3xl font-light text-[#F4F0E7]">
+              <h3 className="font-sans text-2xl sm:text-3xl font-normal text-[#f4f3e8] tracking-[-0.03em]">
                 Supplied Video Reels ({project.videos.length})
               </h3>
             </div>
-            <p className="text-xs text-[#8E8A80] max-w-md">
+            <p className="text-xs text-[#84837b] font-normal leading-[1.62] max-w-md">
               Each supplied video is presented as an independent media element. Original cuts, durations, and aspect ratios preserved without alteration.
             </p>
           </div>
@@ -201,12 +197,12 @@ export const ProjectSection: React.FC<ProjectSectionProps> = ({
             {project.videos.map((video) => (
               <div
                 key={video.id}
-                className="group relative flex flex-col bg-[#161B16] border border-[#232D24] hover:border-[#C2A676]/60 rounded-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-[#19352A]/20"
+                className="group relative flex flex-col bg-[#13140e] border border-[#404040] hover:border-[#ebfc72]/80 rounded-none overflow-hidden transition-all duration-300"
               >
                 {/* Video Poster with Play Overlay */}
                 <div
                   onClick={() => onPlayVideo(video, project.title)}
-                  className="relative h-64 sm:h-72 w-full overflow-hidden bg-[#000] cursor-pointer"
+                  className="relative h-64 sm:h-72 w-full overflow-hidden bg-[#13140e] cursor-pointer"
                 >
                   <img
                     src={video.poster}
@@ -218,17 +214,17 @@ export const ProjectSection: React.FC<ProjectSectionProps> = ({
 
                   {/* Centered Play Button */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-14 h-14 rounded-full bg-[#19352A]/90 group-hover:bg-[#C2A676] text-[#F4F0E7] group-hover:text-[#121512] flex items-center justify-center border border-[#C2A676]/50 shadow-2xl transform transition-all duration-300 group-hover:scale-110">
+                    <div className="w-14 h-14 rounded-full bg-[#13140e]/90 group-hover:bg-[#ebfc72] text-[#ebfc72] group-hover:text-[#13140e] flex items-center justify-center border border-[#ebfc72]/60 shadow-none transform transition-all duration-300 group-hover:scale-110">
                       <Play size={22} className="ml-1 fill-current" />
                     </div>
                   </div>
 
                   {/* Top Metadata Badge */}
                   <div className="absolute top-4 left-4 flex items-center gap-2">
-                    <span className="px-2.5 py-1 rounded-xs bg-[#121512]/80 backdrop-blur-md text-[10px] uppercase tracking-wider font-semibold text-[#F4F0E7] border border-[#2D3A31]">
+                    <span className="px-2.5 py-1 rounded-[3.6px] bg-[#13140e]/90 backdrop-blur-md text-[10px] font-mono uppercase tracking-widest text-[#f4f3e8] border border-[#404040]">
                       {video.duration || 'Drone Reel'}
                     </span>
-                    <span className="px-2.5 py-1 rounded-xs bg-[#19352A]/80 backdrop-blur-md text-[10px] font-mono text-[#C2A676] border border-[#2D4D3D]">
+                    <span className="px-2.5 py-1 rounded-[3.6px] bg-[#13140e]/90 backdrop-blur-md text-[10px] font-mono text-[#ebfc72] border border-[#404040]">
                       {video.fileSize}
                     </span>
                   </div>
@@ -237,23 +233,23 @@ export const ProjectSection: React.FC<ProjectSectionProps> = ({
                 {/* Video Info Details */}
                 <div className="p-6 flex-1 flex flex-col justify-between">
                   <div>
-                    <h4 className="font-serif text-xl sm:text-2xl font-medium text-[#F4F0E7] group-hover:text-[#C2A676] transition-colors mb-2">
+                    <h4 className="font-sans text-xl sm:text-2xl font-normal text-[#f4f3e8] tracking-[-0.03em] group-hover:text-[#ebfc72] transition-colors mb-2">
                       {video.title}
                     </h4>
-                    <p className="text-xs text-[#8E8A80] font-mono mb-3">
+                    <p className="text-xs text-[#84837b] font-mono mb-3">
                       Source: {video.originalName}
                     </p>
-                    <p className="text-xs sm:text-sm text-[#D9D5CA]/80 leading-relaxed font-light mb-6">
+                    <p className="text-xs sm:text-sm text-[#84837b] leading-[1.62] font-normal mb-6">
                       {video.description}
                     </p>
                   </div>
 
                   {/* Actions */}
-                  <div className="pt-4 border-t border-[#232D24] flex items-center justify-between text-xs">
+                  <div className="pt-4 border-t border-[#404040] flex items-center justify-between text-xs">
                     <button
                       type="button"
                       onClick={() => onPlayVideo(video, project.title)}
-                      className="inline-flex items-center gap-2 uppercase tracking-wider font-semibold text-[#C2A676] hover:text-[#F4F0E7] transition-colors"
+                      className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#ebfc72] hover:text-[#f4f3e8] transition-colors"
                     >
                       <Play size={12} className="fill-current" />
                       <span>Play Video</span>
@@ -263,7 +259,7 @@ export const ProjectSection: React.FC<ProjectSectionProps> = ({
                       href={`https://drive.google.com/file/d/${video.driveId}/view?usp=sharing`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-[#8E8A80] hover:text-[#D9D5CA] transition-colors font-mono"
+                      className="inline-flex items-center gap-1.5 text-[#84837b] hover:text-[#f4f3e8] transition-colors font-mono text-xs"
                       title="Inspect original file in Drive"
                     >
                       <HardDrive size={12} />

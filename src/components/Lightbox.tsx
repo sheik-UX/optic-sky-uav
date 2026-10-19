@@ -60,19 +60,19 @@ export const Lightbox: React.FC<LightboxProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex flex-col justify-between bg-[#0e110e]/95 backdrop-blur-xl animate-fade-in"
+      className="fixed inset-0 z-50 flex flex-col justify-between bg-[#13140e]/95 backdrop-blur-xl animate-fade-in"
       role="dialog"
       aria-modal="true"
       aria-label={`Enlarged photo: ${currentPhoto.alt}`}
     >
       {/* Top Bar: Project Title, Counter, and Close Button */}
-      <div className="flex items-center justify-between px-6 py-4 border-b border-[#232D24] z-20">
+      <div className="flex items-center justify-between px-6 py-4 border-b border-[#404040] z-20">
         <div className="flex items-center gap-3">
-          <Camera size={16} className="text-[#C2A676]" />
-          <span className="font-serif text-lg text-[#F4F0E7] font-medium tracking-wide">
+          <Camera size={16} className="text-[#ebfc72]" />
+          <span className="font-sans text-lg text-[#f4f3e8] font-normal tracking-[-0.03em]">
             {projectTitle}
           </span>
-          <span className="text-[#8E8A80] text-xs font-mono">
+          <span className="text-[#84837b] text-xs font-mono">
             Plate {currentIndex + 1} of {photos.length}
           </span>
         </div>
@@ -81,7 +81,7 @@ export const Lightbox: React.FC<LightboxProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="p-2 text-[#D9D5CA] hover:text-[#F4F0E7] bg-[#192019] hover:bg-[#253025] rounded-full border border-[#2D3A31] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C2A676]"
+            className="p-2 text-[#84837b] hover:text-[#ebfc72] bg-[#13140e] rounded-[3.6px] border border-[#404040] transition-colors focus:outline-none"
             aria-label="Close Lightbox"
           >
             <X size={20} />
@@ -95,7 +95,7 @@ export const Lightbox: React.FC<LightboxProps> = ({
         <button
           type="button"
           onClick={handlePrev}
-          className="absolute left-4 sm:left-6 z-20 p-3 sm:p-4 text-[#D9D5CA] hover:text-[#F4F0E7] bg-[#121512]/80 hover:bg-[#19352A] rounded-full border border-[#2D3A31] backdrop-blur-md transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C2A676]"
+          className="absolute left-4 sm:left-6 z-20 p-3 sm:p-4 text-[#f4f3e8] hover:text-[#13140e] hover:bg-[#ebfc72] hover:border-[#ebfc72] bg-[#13140e]/90 rounded-[3.6px] border border-[#404040] backdrop-blur-md transition-all duration-300 focus:outline-none"
           aria-label="Previous photograph"
         >
           <ChevronLeft size={22} />
@@ -106,7 +106,7 @@ export const Lightbox: React.FC<LightboxProps> = ({
           <img
             src={currentPhoto.src}
             alt={currentPhoto.alt}
-            className="max-w-full max-h-[75vh] object-contain rounded-sm shadow-2xl transition-transform duration-300"
+            className="max-w-full max-h-[75vh] object-contain rounded-none shadow-none transition-transform duration-300"
           />
         </div>
 
@@ -114,7 +114,7 @@ export const Lightbox: React.FC<LightboxProps> = ({
         <button
           type="button"
           onClick={handleNext}
-          className="absolute right-4 sm:right-6 z-20 p-3 sm:p-4 text-[#D9D5CA] hover:text-[#F4F0E7] bg-[#121512]/80 hover:bg-[#19352A] rounded-full border border-[#2D3A31] backdrop-blur-md transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C2A676]"
+          className="absolute right-4 sm:right-6 z-20 p-3 sm:p-4 text-[#f4f3e8] hover:text-[#13140e] hover:bg-[#ebfc72] hover:border-[#ebfc72] bg-[#13140e]/90 rounded-[3.6px] border border-[#404040] backdrop-blur-md transition-all duration-300 focus:outline-none"
           aria-label="Next photograph"
         >
           <ChevronRight size={22} />
@@ -122,17 +122,17 @@ export const Lightbox: React.FC<LightboxProps> = ({
       </div>
 
       {/* Bottom Bar: Caption, Metadata, and Dimensions */}
-      <div className="px-6 py-4 border-t border-[#232D24] bg-[#121512]/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2 z-20">
+      <div className="px-6 py-4 border-t border-[#404040] bg-[#13140e]/90 flex flex-col sm:flex-row sm:items-center justify-between gap-2 z-20">
         <div>
-          <p className="text-sm text-[#F4F0E7] font-medium">
+          <p className="text-sm font-sans font-normal text-[#f4f3e8]">
             {currentPhoto.caption || currentPhoto.alt}
           </p>
-          <p className="text-xs text-[#8E8A80] font-mono">
+          <p className="text-xs text-[#84837b] font-mono">
             Source: {currentPhoto.originalName}
           </p>
         </div>
 
-        <div className="flex items-center gap-4 text-xs font-mono text-[#8E8A80]">
+        <div className="flex items-center gap-4 text-xs font-mono text-[#84837b]">
           <span>Resolution: {currentPhoto.width} × {currentPhoto.height}px</span>
           <span className="hidden sm:inline">•</span>
           <span>Ratio: {currentPhoto.aspectRatio}</span>
@@ -140,7 +140,7 @@ export const Lightbox: React.FC<LightboxProps> = ({
             href={currentPhoto.src}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-[#C2A676] hover:underline ml-2"
+            className="inline-flex items-center gap-1 text-[#ebfc72] hover:underline ml-2"
           >
             <Maximize2 size={12} />
             <span>Full Resolution</span>
