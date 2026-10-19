@@ -1,86 +1,99 @@
 import React from 'react';
-import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
-import { SERVICES } from '../data/content';
+import { Flag, Building, HardHat, Compass, Map, Video } from 'lucide-react';
 
 export const Services: React.FC = () => {
+  const serviceList = [
+    {
+      icon: <Flag className="w-6 h-6 text-[#FFB800]" />,
+      number: '01',
+      title: 'Golf Course Flyovers & Scoring Views',
+      description: 'Hole-by-hole cinematic orbital flyovers, tee-to-green yardage lines, and high-resolution agronomy turf inspections for championship courses and private clubs.'
+    },
+    {
+      icon: <Building className="w-6 h-6 text-[#FFB800]" />,
+      number: '02',
+      title: 'Commercial Real Estate & Architecture',
+      description: 'Stunning exterior plate photography, sightline verifications, and property boundary overlays designed to accelerate leasing and high-value property sales.'
+    },
+    {
+      icon: <HardHat className="w-6 h-6 text-[#FFB800]" />,
+      number: '03',
+      title: 'Construction Milestone Documentation',
+      description: 'Regular aerial progress audits, earthwork volume tracking, crane inspections, and georeferenced audit trails for general contractors and capital partners.'
+    },
+    {
+      icon: <Compass className="w-6 h-6 text-[#FFB800]" />,
+      number: '04',
+      title: 'Resort & Luxury Hospitality Storytelling',
+      description: 'Golden-hour and twilight aerial cinematography highlighting resort scale, poolside amenities, surrounding topography, and guest experience.'
+    },
+    {
+      icon: <Map className="w-6 h-6 text-[#FFB800]" />,
+      number: '05',
+      title: 'Precision 3D Scans & Orthomosaics',
+      description: 'Sub-centimeter georeferenced aerial surveys, digital surface models (DSM), and high-density point clouds ready for CAD and GIS workflows.'
+    },
+    {
+      icon: <Video className="w-6 h-6 text-[#FFB800]" />,
+      number: '06',
+      title: 'Cinematic Film, Broadcast & Commercials',
+      description: 'FAA Part 107.29 daylight and night-waiver operations delivering 10-bit D-Log ProRes footage tailored for television commercials and branded documentaries.'
+    }
+  ];
+
   return (
-    <section id="services" className="py-28 sm:py-36 bg-[#13140e] relative border-t border-[#404040]">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        {/* Section Header */}
-        <div className="max-w-2xl mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#ebfc72] font-mono mb-3">
-            <span className="w-6 h-[1px] bg-[#ebfc72]" />
-            <span>DISCIPLINES & CAPABILITIES</span>
+    <section id="services" className="py-24 sm:py-36 bg-white text-neutral-900 border-b border-neutral-200">
+      <div className="max-w-[1280px] mx-auto px-6 sm:px-8">
+        
+        {/* Centered Section Header Matching Reference */}
+        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
+          <div className="inline-flex items-center gap-2 mb-3">
+            <span className="w-6 h-[2px] bg-[#FFB800]" />
+            <span className="text-xs font-mono uppercase tracking-[0.25em] font-semibold text-neutral-500">
+              SERVICES & CAPABILITIES
+            </span>
+            <span className="w-6 h-[2px] bg-[#FFB800]" />
           </div>
-          <h2 className="font-sans text-4xl sm:text-5xl lg:text-6xl font-normal text-[#f4f3e8] tracking-[-0.03em] leading-[0.95] mb-4">
-            COMMERCIAL AERIAL <br />
-            <span className="text-[#84837b]">SERVICES</span>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-neutral-950 leading-[1.08]">
+            WHAT WE CAPTURE — AERIAL <br />
+            IMAGERY WITH PURPOSE
           </h2>
-          <p className="text-base text-[#f4f3e8]/80 font-normal leading-[1.62]">
-            Tailored visual storytelling and rigorous aerial documentation delivered with commercial precision.
-          </p>
         </div>
 
-        {/* 3 Editorial Service Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
-          {SERVICES.map((service) => (
+        {/* 6-Grid Service Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {serviceList.map((service) => (
             <div
               key={service.number}
-              className="group relative flex flex-col bg-[#13140e] border border-[#404040] hover:border-[#ebfc72]/80 rounded-none overflow-hidden transition-all duration-500"
+              className="bg-neutral-50 border border-neutral-200 rounded-2xl p-8 hover:border-neutral-400 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group"
             >
-              {/* Media Preview Container */}
-              <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-[#13140e]">
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#13140e] via-[#13140e]/40 to-transparent" />
-                
-                {/* Number Badge */}
-                <div className="absolute top-4 left-4 px-3 py-1 bg-[#13140e]/90 backdrop-blur-md border border-[#404040] rounded-[3.6px]">
-                  <span className="font-mono text-xs font-normal tracking-widest text-[#ebfc72]">
+              <div>
+                <div className="flex items-center justify-between mb-6">
+                  <div className="p-3 rounded-xl bg-white shadow-sm border border-neutral-200 group-hover:scale-110 transition-transform">
+                    {service.icon}
+                  </div>
+                  <span className="font-mono text-xs font-bold text-neutral-400 tracking-widest">
                     {service.number}
                   </span>
                 </div>
+
+                <h3 className="font-display text-lg sm:text-xl font-bold uppercase text-neutral-900 mb-3 leading-snug">
+                  {service.title}
+                </h3>
+
+                <p className="text-sm text-neutral-600 leading-relaxed font-normal">
+                  {service.description}
+                </p>
               </div>
 
-              {/* Service Content */}
-              <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between">
-                <div>
-                  <h3 className="font-sans text-2xl lg:text-3xl font-normal text-[#f4f3e8] tracking-[-0.03em] mb-2 group-hover:text-[#ebfc72] transition-colors duration-300">
-                    {service.title}
-                  </h3>
-                  <p className="font-mono text-xs uppercase tracking-widest text-[#ebfc72] mb-4">
-                    {service.tagline}
-                  </p>
-                  <p className="text-sm text-[#84837b] leading-[1.62] font-normal mb-6">
-                    {service.description}
-                  </p>
-
-                  {/* Highlights Bullet List */}
-                  <ul className="space-y-2.5 pt-4 border-t border-[#404040] mb-6">
-                    {service.highlights.map((highlight, hIdx) => (
-                      <li key={hIdx} className="flex items-start gap-2.5 text-xs text-[#84837b] font-mono">
-                        <CheckCircle2 size={13} className="text-[#ebfc72] shrink-0 mt-0.5" />
-                        <span>{highlight}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <a
-                  href="#contact"
-                  className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#f4f3e8] group-hover:text-[#ebfc72] transition-colors pt-4 border-t border-[#404040]"
-                >
-                  <span>Inquire for {service.title.split('&')[0].trim()}</span>
-                  <ArrowUpRight size={13} className="text-[#ebfc72] transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </a>
+              <div className="mt-6 pt-4 border-t border-neutral-200/80 flex items-center justify-between text-xs font-mono text-neutral-500">
+                <span>COMMERCIAL GRADE</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FFB800]" />
               </div>
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowDown, ArrowUpRight, Compass, Layers } from 'lucide-react';
+import { ArrowDown, ArrowUpRight } from 'lucide-react';
 
 interface HeroProps {
   onExploreWork: () => void;
@@ -7,23 +7,14 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onExploreWork, onDiscussProject }) => {
-  // Allow switching between the 3 authentic client project views in the hero
   const heroBackgrounds = [
     {
       id: 'whistling',
       title: 'Whistling Straits',
       location: 'Sheboygan, WI',
-      category: 'Golf & Hospitality',
-      src: '/assets/whistling-straits/whistling-01.jpg',
+      category: 'Championship Golf Course',
+      src: '/assets/whistling-straits/whistling-02.jpg',
       alt: 'Whistling Straits coastal championship golf course aerial sweep'
-    },
-    {
-      id: 'serket',
-      title: 'Serket',
-      location: 'Commercial Development',
-      category: 'Architectural & Survey',
-      src: '/assets/serket/serket-01.jpg',
-      alt: 'Serket architectural high-altitude development survey'
     },
     {
       id: 'cascata',
@@ -32,15 +23,22 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onDiscussProject }) =
       category: 'Civil Infrastructure',
       src: '/assets/cascata-water-reclamation/cascata-01.jpg',
       alt: 'Cascata Water Reclamation municipal civil infrastructure facility'
+    },
+    {
+      id: 'serket',
+      title: 'Serket Construction',
+      location: 'Las Vegas, NV',
+      category: 'Commercial Development',
+      src: '/assets/serket/serket-01.jpg',
+      alt: 'Serket architectural high-altitude development survey'
     }
   ];
 
   const [activeBgIndex, setActiveBgIndex] = useState(0);
-  const currentBg = heroBackgrounds[activeBgIndex];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-16">
-      {/* Background Imagery with Smooth Transition */}
+    <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden pt-32 pb-20">
+      {/* Background Imagery with Subtle Zoom */}
       <div className="absolute inset-0 z-0">
         {heroBackgrounds.map((bg, idx) => (
           <div
@@ -52,107 +50,77 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onDiscussProject }) =
             <img
               src={bg.src}
               alt={bg.alt}
-              className="w-full h-full object-cover object-center transform transition-transform duration-[12000ms] ease-out scale-105 motion-safe:hover:scale-100"
+              className="w-full h-full object-cover object-center transform transition-transform duration-[12000ms] ease-out scale-105"
               loading="eager"
             />
           </div>
         ))}
 
-        {/* Editorial Gradients & Restrained Vignette */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#13140e] via-[#13140e]/60 to-[#13140e]/40" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-[#13140e]/40 to-[#13140e]/85" />
+        {/* Cinematic Vignette Overlay Matching Reference */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/60" />
+        <div className="absolute inset-0 bg-black/25" />
       </div>
 
-      {/* Main Content Area */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 text-center flex flex-col items-center">
+      {/* Main Hero Content */}
+      <div className="relative z-10 max-w-5xl mx-auto px-6 sm:px-8 text-center flex flex-col items-center">
         {/* Eyebrow Label */}
-        <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-[3.6px] bg-[#13140e]/90 border border-[#404040] backdrop-blur-md mb-6 animate-fade-in">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#ebfc72] animate-pulse" />
-          <span className="text-[11px] font-mono uppercase tracking-[0.25em] font-medium text-[#ebfc72]">
-            A CLEARER VIEW FROM ABOVE
+        <div className="inline-flex items-center gap-2 mb-6">
+          <span className="w-6 h-[1.5px] bg-[#38BDF8]" />
+          <span className="text-xs font-mono uppercase tracking-[0.25em] font-semibold text-[#38BDF8]">
+            COMMERCIAL DRONE & AERIAL CINEMATOGRAPHY
           </span>
         </div>
 
-        {/* Grand Headline */}
-        <h1 className="font-sans text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-[-0.03em] text-[#f4f3e8] font-normal leading-[0.92] max-w-4xl mb-4">
-          AERIAL IMAGERY <br className="hidden sm:block" />
-          <span className="text-[#f4f3e8]">WITH PURPOSE</span>
+        {/* Bold Futuristic Editorial Headline */}
+        <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold uppercase text-white tracking-[-0.02em] leading-[1.04] max-w-4xl mb-6">
+          SEE YOUR PROPERTY FROM <br className="hidden sm:block" />
+          A NEW PERSPECTIVE.
         </h1>
 
-        {/* Supporting Line */}
-        <p className="text-sm sm:text-base md:text-lg font-mono uppercase tracking-[0.2em] text-[#ebfc72] font-normal mb-6">
-          ELEVATE YOUR VISION.
+        {/* Subtitle Description */}
+        <p className="text-base sm:text-lg text-neutral-300 font-normal leading-relaxed max-w-2xl mb-10 text-balance">
+          High-resolution aerial photography, 4K cinematic video, and precision mapping for commercial properties, championship golf courses, and infrastructure.
         </p>
 
-        {/* Supporting Paragraph */}
-        <p className="max-w-2xl text-base sm:text-lg md:text-xl text-[#84837b] font-normal leading-[1.62] mb-10 text-balance">
-          Optic Sky UAV captures aerial photography and cinematic video that reveal the character, progress, and potential of places from a different perspective.
-        </p>
-
-        {/* Call to Actions */}
-        <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-5 w-full sm:w-auto">
-          <button
-            type="button"
-            onClick={onExploreWork}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-[3.6px] bg-[#ebfc72] hover:bg-[#bacd31] text-[#13140e] font-mono font-medium text-xs uppercase tracking-[0.18em] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ebfc72]"
-          >
-            <span>EXPLORE OUR WORK</span>
-            <ArrowDown size={14} className="text-[#13140e]" />
-          </button>
-
+        {/* Dual Pill CTA Buttons Matching Reference */}
+        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-5 mb-14">
           <button
             type="button"
             onClick={onDiscussProject}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-[3.6px] bg-transparent hover:bg-[#f4f3e8]/10 text-[#f4f3e8] font-mono font-medium text-xs uppercase tracking-[0.18em] border border-[#404040] hover:border-[#f4f3e8] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ebfc72]"
+            className="inline-flex items-center gap-2 bg-[#FFB800] hover:bg-yellow-400 text-black font-bold text-xs uppercase tracking-widest px-8 py-3.5 rounded-full transition-all duration-200 shadow-lg shadow-yellow-500/25 active:scale-95"
           >
-            <span>DISCUSS A PROJECT</span>
-            <ArrowUpRight size={14} className="text-[#ebfc72]" />
+            <span>Get a Quote</span>
+            <ArrowUpRight size={16} className="text-black" />
+          </button>
+
+          <button
+            type="button"
+            onClick={onExploreWork}
+            className="inline-flex items-center gap-2 bg-black/40 hover:bg-black/60 backdrop-blur-md text-white border border-white/30 hover:border-white text-xs uppercase tracking-widest font-semibold px-8 py-3.5 rounded-full transition-all duration-200 active:scale-95"
+          >
+            <span>Explore Work</span>
+            <ArrowDown size={14} className="text-white/80" />
           </button>
         </div>
 
-        {/* Live Project Perspective Switcher Bar */}
-        <div className="mt-14 pt-6 border-t border-[#404040] flex flex-wrap items-center justify-center gap-2 sm:gap-4">
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#84837b] mr-2">
-            <Compass size={13} className="text-[#ebfc72]" />
-            <span>Perspective:</span>
-          </div>
-
+        {/* Perspective Switcher Controls */}
+        <div className="inline-flex items-center gap-1.5 p-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-xs font-mono">
           {heroBackgrounds.map((bg, idx) => (
             <button
               key={bg.id}
               type="button"
               onClick={() => setActiveBgIndex(idx)}
-              className={`px-3 py-1.5 rounded-[3.6px] text-xs font-mono tracking-wider transition-all duration-200 flex items-center gap-2 border ${
-                idx === activeBgIndex
-                  ? 'bg-[#13140e] text-[#f4f3e8] border-[#ebfc72]'
-                  : 'bg-transparent text-[#84837b] hover:text-[#f4f3e8] border-transparent hover:border-[#404040]'
+              className={`px-3.5 py-1 rounded-full transition-all duration-300 ${
+                activeBgIndex === idx
+                  ? 'bg-white/20 text-white font-medium shadow-sm'
+                  : 'text-neutral-400 hover:text-white'
               }`}
             >
-              <span className={`w-1.5 h-1.5 rounded-full ${idx === activeBgIndex ? 'bg-[#ebfc72]' : 'bg-[#404040]'}`} />
-              <span className="font-normal">{bg.title}</span>
+              {bg.title}
             </button>
           ))}
-        </div>
-      </div>
-
-      {/* Hero Bottom Meta Banner */}
-      <div className="absolute bottom-4 left-0 right-0 z-10 px-6 sm:px-12 flex items-center justify-between text-[11px] tracking-widest text-[#84837b] font-mono uppercase">
-        <div className="hidden md:flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#ebfc72]" />
-          <span>LAS VEGAS, NV // NATIONWIDE MISSION DEPLOYMENT</span>
-        </div>
-
-        <div className="mx-auto md:mx-0 flex items-center gap-2 text-[#ebfc72] animate-bounce">
-          <ArrowDown size={13} />
-          <span className="text-[10px] tracking-[0.25em]">SCROLL TO EXPLORE</span>
-        </div>
-
-        <div className="hidden md:flex items-center gap-2">
-          <Layers size={13} className="text-[#ebfc72]" />
-          <span>CURRENT VIEW: {currentBg.title} [{currentBg.category}]</span>
         </div>
       </div>
     </section>
   );
 };
-

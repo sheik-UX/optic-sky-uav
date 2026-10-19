@@ -5,14 +5,16 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
-import { CinematicReveal } from './components/CinematicReveal';
-import { Introduction } from './components/Introduction';
+import { ElevateDestinations } from './components/ElevateDestinations';
+import { SelectedWork } from './components/SelectedWork';
+import { ConstructionDetail } from './components/ConstructionDetail';
 import { Services } from './components/Services';
-import { ProjectIndex } from './components/ProjectIndex';
-import { ProjectSection } from './components/ProjectSection';
-import { Difference } from './components/Difference';
-import { About } from './components/About';
-import { Contact } from './components/Contact';
+import { VisualTrioBanner } from './components/VisualTrioBanner';
+import { CaseStudyStory } from './components/CaseStudyStory';
+import { FloatingContactBanner } from './components/FloatingContactBanner';
+import { Testimonials } from './components/Testimonials';
+import { FAQSection } from './components/FAQSection';
+import { CallToAction } from './components/CallToAction';
 import { Footer } from './components/Footer';
 import { Lightbox } from './components/Lightbox';
 import { VideoModal } from './components/VideoModal';
@@ -33,13 +35,10 @@ export const App: React.FC = () => {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    // Check if user prefers reduced motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
     gsap.registerPlugin(ScrollTrigger);
 
     if (!prefersReducedMotion) {
-      // Initialize Lenis
       const lenis = new Lenis({
         duration: 1.1,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -47,7 +46,6 @@ export const App: React.FC = () => {
       });
 
       lenisRef.current = lenis;
-
       lenis.on('scroll', ScrollTrigger.update);
 
       const tickerCallback = (time: number) => {
@@ -86,6 +84,12 @@ export const App: React.FC = () => {
     setActiveVideo(null);
   };
 
+  const handlePlayFeaturedVideo = () => {
+    if (PROJECTS[2]?.videos?.[0]) {
+      handlePlayVideo(PROJECTS[2].videos[0], PROJECTS[2].title);
+    }
+  };
+
   const handleScrollTo = (id: string) => {
     const elem = document.getElementById(id);
     if (elem) {
@@ -94,68 +98,67 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#13140e] text-[#f4f3e8] flex flex-col selection:bg-[#ebfc72] selection:text-[#13140e] font-sans">
-      {/* Top Header Navigation */}
+    <div className="min-h-screen bg-[#0a0a0a] text-neutral-100 flex flex-col selection:bg-[#FFB800] selection:text-black font-sans antialiased">
+      {/* 01 — Fixed Header Navigation */}
       <Header onNavigate={handleScrollTo} />
 
       <main className="flex-1 flex flex-col">
-        {/* Section 02 — Hero */}
+        {/* 02 — Hero Section: Coastal Golf, Wide Headline, Dual Pill Buttons */}
         <Hero
           onExploreWork={() => handleScrollTo('work')}
           onDiscussProject={() => handleScrollTo('contact')}
         />
 
-        {/* Cinematic Scroll-Driven Portfolio Reveal */}
-        <CinematicReveal />
+        {/* 03 — Elevate Destinations: White section with panoramic player showcase and 3 cards */}
+        <ElevateDestinations onPlayVideo={handlePlayFeaturedVideo} />
 
-        {/* Section 03 — Introduction */}
-        <Introduction />
+        {/* 04 — Selected Work: Dark section with 4 horizontal project cards */}
+        <SelectedWork
+          onOpenLightbox={handleOpenLightbox}
+          onPlayVideo={handlePlayVideo}
+        />
 
+        {/* 05 — Construction Detail: Dark section with twilight Serket cranes and 3 cards */}
+        <ConstructionDetail />
 
-        {/* Section 04 — Services */}
+        {/* 06 — Services: White section with 6-grid capability cards */}
         <Services />
 
-        {/* Section 05 — Featured Work Introduction & Project Index */}
-        <ProjectIndex />
-
-        {/* Section 06 — Project One: Serket */}
-        <ProjectSection
-          project={PROJECTS[0]}
-          projectNumber="01"
-          onOpenLightbox={handleOpenLightbox}
-          onPlayVideo={handlePlayVideo}
+        {/* 07 — Visual Trio Banner: Dark section with 3 photos and yellow marquee ticker */}
+        <VisualTrioBanner
+          onDiscussProject={() => handleScrollTo('contact')}
+          onExploreServices={() => handleScrollTo('services')}
         />
 
-        {/* Section 07 — Project Two: Cascata Water Reclamation */}
-        <ProjectSection
-          project={PROJECTS[1]}
-          projectNumber="02"
-          onOpenLightbox={handleOpenLightbox}
-          onPlayVideo={handlePlayVideo}
+        {/* 08 — Case Study Story: White section with 3-step panoramic storytelling */}
+        <CaseStudyStory
+          onOpenCaseStudy={() => {
+            if (PROJECTS[2]) {
+              handleOpenLightbox(PROJECTS[2].photos, 0, PROJECTS[2].title);
+            }
+          }}
         />
 
-        {/* Section 08 — Project Three: Whistling Straits */}
-        <ProjectSection
-          project={PROJECTS[2]}
-          projectNumber="03"
-          onOpenLightbox={handleOpenLightbox}
-          onPlayVideo={handlePlayVideo}
+        {/* 09 — Floating Contact Banner: Aerial forest background with centered floating card */}
+        <FloatingContactBanner />
+
+        {/* 10 — Testimonials: Light section with 6 verified reviews */}
+        <Testimonials />
+
+        {/* 11 — FAQ Section: White section with pilot consultation card & interactive accordion */}
+        <FAQSection />
+
+        {/* 12 — Call to Action: Dark coastal twilight background with dual pill buttons */}
+        <CallToAction
+          onDiscussProject={() => handleScrollTo('contact')}
+          onExploreWork={() => handleScrollTo('work')}
         />
-
-        {/* Section 09 — The Optic Sky Difference */}
-        <Difference />
-
-        {/* Section 10 — About / Production Approach */}
-        <About />
-
-        {/* Section 11 — Contact CTA & Inquiry Form */}
-        <Contact />
       </main>
 
-      {/* Section 12 — Footer */}
+      {/* 13 — Comprehensive 4-Column Footer */}
       <Footer />
 
-      {/* Accessible Photo Lightbox Modal */}
+      {/* Interactive Photo Lightbox Modal */}
       <Lightbox
         photos={lightboxPhotos}
         currentIndex={lightboxIndex}

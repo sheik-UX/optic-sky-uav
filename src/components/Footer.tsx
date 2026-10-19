@@ -1,6 +1,6 @@
 import React from 'react';
-import { ArrowUp, Phone, MapPin, Mail } from 'lucide-react';
-import { BRAND, PROJECTS } from '../data/content';
+import { ArrowUp, Mail, Phone, MapPin, ShieldCheck } from 'lucide-react';
+import { BRAND } from '../data/content';
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -8,136 +8,158 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-[#13140e] text-[#f4f3e8] border-t border-[#404040] pt-20 pb-12">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-[#404040]">
-          {/* Brand Col */}
-          <div className="lg:col-span-5 flex flex-col">
-            <div className="flex items-center gap-3 mb-4">
+    <footer className="bg-[#070806] text-white border-t border-neutral-900 pt-20 pb-12">
+      <div className="max-w-[1280px] mx-auto px-6 sm:px-8">
+        
+        {/* Main 4-Column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-neutral-900">
+          
+          {/* Column 1: Brand Wordmark & Narrative */}
+          <div className="lg:col-span-4">
+            <div className="flex items-center gap-3 mb-6">
               <img
                 src="/assets/branding/logo.png"
                 alt="Optic Sky UAV Logo"
                 className="h-9 w-auto object-contain"
               />
-              <div>
-                <span className="font-sans tracking-[-0.03em] uppercase text-xl font-normal text-[#f4f3e8] block">
-                  Optic Sky
-                </span>
-                <span className="text-[10px] uppercase font-mono tracking-widest text-[#ebfc72] block -mt-0.5">
-                  Aerial Visual Studio
-                </span>
-              </div>
+              <span className="font-display tracking-tight text-xl font-bold uppercase text-white">
+                OPTIC SKY UAV
+              </span>
             </div>
 
-            <p className="text-xs text-[#84837b] leading-[1.62] max-w-sm mb-6">
-              Optic Sky UAV delivers premium aerial photography and cinematic videography tailored for championship golf courses, active civil construction, and commercial real estate presentations.
+            <p className="text-sm text-neutral-400 leading-relaxed font-normal mb-6 max-w-sm">
+              Commercial aerial photography and drone cinematography revealing the character, progress, and architectural scale of properties from above.
             </p>
 
-            <div className="flex items-center gap-2 text-xs font-mono text-[#ebfc72]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#ebfc72]" />
-              <span>FAA Part 107 Commercial Drone Operations</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-[#FFB800]">
+              <ShieldCheck size={14} className="text-[#FFB800]" />
+              <span>FAA PART 107 CERTIFIED // $5M INSURED</span>
             </div>
           </div>
 
-          {/* Featured Projects Nav */}
+          {/* Column 2: Capabilities / Services */}
           <div className="lg:col-span-3">
-            <p className="text-xs uppercase font-mono tracking-widest text-[#ebfc72] mb-4">
-              Featured Work
-            </p>
-            <ul className="space-y-2.5 text-xs font-mono">
-              {PROJECTS.map((p) => (
-                <li key={p.id}>
-                  <a
-                    href={`#${p.id}`}
-                    className="text-[#84837b] hover:text-[#f4f3e8] transition-colors flex items-center justify-between group"
-                  >
-                    <span>{p.title}</span>
-                    <span className="text-[10px] text-[#84837b] font-mono group-hover:text-[#ebfc72]">
-                      {p.photos.length} Plates
-                    </span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Quick Nav */}
-          <div className="lg:col-span-2">
-            <p className="text-xs uppercase font-mono tracking-widest text-[#ebfc72] mb-4">
-              Navigation
-            </p>
-            <ul className="space-y-2.5 text-xs font-mono">
+            <h4 className="font-display text-xs uppercase tracking-widest text-neutral-300 font-bold mb-5">
+              Capabilities
+            </h4>
+            <ul className="space-y-3 text-sm font-normal text-neutral-400">
               <li>
-                <a href="#work" className="text-[#84837b] hover:text-[#f4f3e8] transition-colors">
-                  Portfolio Index
+                <a href="#services" className="hover:text-[#FFB800] transition-colors">
+                  Golf Course Flyovers
                 </a>
               </li>
               <li>
-                <a href="#services" className="text-[#84837b] hover:text-[#f4f3e8] transition-colors">
-                  Services
+                <a href="#services" className="hover:text-[#FFB800] transition-colors">
+                  Commercial Real Estate
                 </a>
               </li>
               <li>
-                <a href="#about" className="text-[#84837b] hover:text-[#f4f3e8] transition-colors">
-                  About & Perspective
+                <a href="#services" className="hover:text-[#FFB800] transition-colors">
+                  Construction Milestone Audits
                 </a>
               </li>
               <li>
-                <a href="#approach" className="text-[#84837b] hover:text-[#f4f3e8] transition-colors">
-                  Production Approach
+                <a href="#services" className="hover:text-[#FFB800] transition-colors">
+                  Precision Orthomosaic Mapping
                 </a>
               </li>
               <li>
-                <a href="#contact" className="text-[#84837b] hover:text-[#f4f3e8] transition-colors">
-                  Contact & Inquiries
+                <a href="#services" className="hover:text-[#FFB800] transition-colors">
+                  4K 60FPS Cinematic Film
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Verified Contact Info */}
+          {/* Column 3: Portfolio & Production */}
           <div className="lg:col-span-2">
-            <p className="text-xs uppercase font-mono tracking-widest text-[#ebfc72] mb-4">
-              Contact & Studio
-            </p>
-            <div className="space-y-3 text-xs font-mono text-[#84837b]">
-              <div className="flex items-start gap-2">
-                <MapPin size={13} className="text-[#ebfc72] shrink-0 mt-0.5" />
-                <span>{BRAND.location}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Phone size={13} className="text-[#ebfc72] shrink-0" />
-                <a href={`tel:${BRAND.phoneRaw}`} className="hover:text-[#f4f3e8] transition-colors">
-                  {BRAND.phone}
+            <h4 className="font-display text-xs uppercase tracking-widest text-neutral-300 font-bold mb-5">
+              Portfolio
+            </h4>
+            <ul className="space-y-3 text-sm font-normal text-neutral-400">
+              <li>
+                <a href="#work" className="hover:text-[#FFB800] transition-colors">
+                  Whistling Straits
                 </a>
-              </div>
-              <div className="flex items-center gap-2">
-                <Mail size={13} className="text-[#ebfc72] shrink-0" />
-                <a href={`mailto:${BRAND.email}`} className="hover:text-[#f4f3e8] transition-colors">
+              </li>
+              <li>
+                <a href="#work" className="hover:text-[#FFB800] transition-colors">
+                  Cascata Water
+                </a>
+              </li>
+              <li>
+                <a href="#work" className="hover:text-[#FFB800] transition-colors">
+                  Serket Construction
+                </a>
+              </li>
+              <li>
+                <a href="#case-study" className="hover:text-[#FFB800] transition-colors">
+                  Flight Case Studies
+                </a>
+              </li>
+              <li>
+                <a href="#faq" className="hover:text-[#FFB800] transition-colors">
+                  Flight Protocols & FAQ
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 4: Contact & Dispatch */}
+          <div className="lg:col-span-3">
+            <h4 className="font-display text-xs uppercase tracking-widest text-neutral-300 font-bold mb-5">
+              Flight Operations
+            </h4>
+            <ul className="space-y-3 text-sm font-normal text-neutral-400">
+              <li className="flex items-center gap-2">
+                <MapPin size={14} className="text-[#FFB800] shrink-0" />
+                <span>Las Vegas, NV (Nationwide)</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <Mail size={14} className="text-[#FFB800] shrink-0" />
+                <a href={`mailto:${BRAND.email}`} className="hover:text-white transition-colors">
                   {BRAND.email}
                 </a>
-              </div>
-            </div>
+              </li>
+              <li className="flex items-center gap-2">
+                <Phone size={14} className="text-[#FFB800] shrink-0" />
+                <a href={`tel:${BRAND.phoneRaw}`} className="hover:text-white transition-colors">
+                  {BRAND.phone}
+                </a>
+              </li>
+              <li className="text-xs font-mono text-neutral-500 pt-2">
+                HOURS: 06:00 - 18:00 PST // MON - SAT
+              </li>
+            </ul>
           </div>
+
         </div>
 
         {/* Bottom Bar: Copyright & Back to Top */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#84837b]">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-neutral-500">
           <div>
-            © {BRAND.copyrightYear} {BRAND.name}. All Rights Reserved. Client Work Protected Under Exclusive Copyright.
+            © 2026 Optic Sky UAV. All rights reserved. • Domain: opticskyuav.com
           </div>
 
-          <button
-            type="button"
-            onClick={scrollToTop}
-            className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#84837b] hover:text-[#ebfc72] transition-colors group"
-          >
-            <span>Back to Top</span>
-            <div className="p-1.5 rounded-[3.6px] bg-[#13140e] border border-[#404040] group-hover:border-[#ebfc72] text-[#ebfc72]">
-              <ArrowUp size={12} />
-            </div>
-          </button>
+          <div className="flex items-center gap-6">
+            <a href="#" className="hover:text-neutral-300 transition-colors">
+              Privacy Policy
+            </a>
+            <a href="#" className="hover:text-neutral-300 transition-colors">
+              Terms of Service
+            </a>
+            <button
+              type="button"
+              onClick={scrollToTop}
+              className="flex items-center gap-1.5 text-neutral-400 hover:text-[#FFB800] transition-colors"
+              aria-label="Back to top of page"
+            >
+              <span>Back to Top</span>
+              <ArrowUp size={14} />
+            </button>
+          </div>
         </div>
+
       </div>
     </footer>
   );
