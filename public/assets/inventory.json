@@ -1,0 +1,760 @@
+{
+  "inventory": [
+    {
+      "project": "SERKET",
+      "filename": "serket-01.jpg",
+      "original_name": "Serket1.JPG",
+      "path": "/assets/serket/serket-01.jpg",
+      "width": 2560,
+      "height": 1424,
+      "aspect_ratio": "2560:1424 (1.8)",
+      "aspect_category": "16:9 Landscape",
+      "file_size_kb": 472.3,
+      "drive_id": "1O5sA886s853uTyN06lr40Nw4Qr8uQuVD",
+      "type": "image"
+    },
+    {
+      "project": "SERKET",
+      "filename": "serket-02.jpg",
+      "original_name": "Copy of Serket2.JPG",
+      "path": "/assets/serket/serket-02.jpg",
+      "width": 2560,
+      "height": 1408,
+      "aspect_ratio": "2560:1408 (1.82)",
+      "aspect_category": "Landscape",
+      "file_size_kb": 906.8,
+      "drive_id": "1IupGnSA9qNZyfdtAr4mDsmA7R0ShnbPk",
+      "type": "image"
+    },
+    {
+      "project": "SERKET",
+      "filename": "serket-03.jpg",
+      "original_name": "Serket5.JPG",
+      "path": "/assets/serket/serket-03.jpg",
+      "width": 2560,
+      "height": 1408,
+      "aspect_ratio": "2560:1408 (1.82)",
+      "aspect_category": "Landscape",
+      "file_size_kb": 634.5,
+      "drive_id": "1OYdjoNaBvVJKIRhRAzijW9UN9a5H13yq",
+      "type": "image"
+    },
+    {
+      "project": "SERKET",
+      "filename": "serket-04.jpg",
+      "original_name": "Copy of DJI_20260524074657_0022_D_FLIGHT1.JPG",
+      "path": "/assets/serket/serket-04.jpg",
+      "width": 2560,
+      "height": 1920,
+      "aspect_ratio": "2560:1920 (1.33)",
+      "aspect_category": "Landscape",
+      "file_size_kb": 776.1,
+      "drive_id": "1B-8xhDjzFousjb9TpYRravvAJbWWxr_J",
+      "type": "image"
+    },
+    {
+      "project": "SERKET",
+      "filename": "serket-05.jpg",
+      "original_name": "Screenshot 2026-09-15 at 4.14.22 PM.png",
+      "path": "/assets/serket/serket-05.jpg",
+      "width": 1306,
+      "height": 712,
+      "aspect_ratio": "1306:712 (1.83)",
+      "aspect_category": "Landscape",
+      "file_size_kb": 1057.3,
+      "drive_id": "1DWUy5X_igowyQrKlSKd3p_MOyFWq1GQq",
+      "type": "image"
+    },
+    {
+      "project": "SERKET",
+      "filename": "serket-06.jpg",
+      "original_name": "Screenshot 2026-09-15 at 4.23.01 PM.png",
+      "path": "/assets/serket/serket-06.jpg",
+      "width": 1891,
+      "height": 1051,
+      "aspect_ratio": "1891:1051 (1.8)",
+      "aspect_category": "16:9 Landscape",
+      "file_size_kb": 3058.8,
+      "drive_id": "1VfUQVmUBn2TXxi-cZzjS14JiEhnEwQI7",
+      "type": "image"
+    },
+    {
+      "project": "SERKET",
+      "filename": "serket-07.jpg",
+      "original_name": "Screenshot 2026-09-15 at 4.23.42 PM.png",
+      "path": "/assets/serket/serket-07.jpg",
+      "width": 1909,
+      "height": 950,
+      "aspect_ratio": "1909:950 (2.01)",
+      "aspect_category": "Landscape",
+      "file_size_kb": 3234.5,
+      "drive_id": "1qMXyaUgC9XCYV7pob9_9vKOORu5e3uXY",
+      "type": "image"
+    },
+    {
+      "project": "SERKET",
+      "filename": "serket-08.jpg",
+      "original_name": "Screenshot 2026-09-15 at 4.24.58 PM.png",
+      "path": "/assets/serket/serket-08.jpg",
+      "width": 1891,
+      "height": 1044,
+      "aspect_ratio": "1891:1044 (1.81)",
+      "aspect_category": "Landscape",
+      "file_size_kb": 3016.3,
+      "drive_id": "1CMi0YBBVzhkdFXtB839qTcAfAdMbJduS",
+      "type": "image"
+    },
+    {
+      "project": "SERKET",
+      "filename": "serket-09.jpg",
+      "original_name": "Screenshot 2026-09-15 at 4.32.31 PM.png",
+      "path": "/assets/serket/serket-09.jpg",
+      "width": 1895,
+      "height": 1049,
+      "aspect_ratio": "1895:1049 (1.81)",
+      "aspect_category": "Landscape",
+      "file_size_kb": 3000.6,
+      "drive_id": "1gVSjtpsCj2RK60cvUSC0JRkIPS6dtpr3",
+      "type": "image"
+    },
+    {
+      "project": "SERKET",
+      "filename": "serket-10.jpg",
+      "original_name": "DJI_20260524074631_0021_D_FLIGHT1.DNG",
+      "path": "/assets/serket/serket-10.jpg",
+      "width": 2560,
+      "height": 1920,
+      "aspect_ratio": "2560:1920 (1.33)",
+      "aspect_category": "Landscape",
+      "file_size_kb": 759.2,
+      "drive_id": "1EckbX78yMG67uhexeTYyS0xl_1aVKTnb",
+      "type": "image"
+    },
+    {
+      "project": "CASCATA WATER RECLAMATION",
+      "filename": "cascata-01.jpg",
+      "original_name": "DJI_20260612074249_0032_D_FLIGHT1.JPG",
+      "path": "/assets/cascata-water-reclamation/cascata-01.jpg",
+      "width": 2560,
+      "height": 1920,
+      "aspect_ratio": "2560:1920 (1.33)",
+      "aspect_category": "Landscape",
+      "file_size_kb": 809.2,
+      "drive_id": "1tt6MC4IXFf_O4pRNaWp5BOaFDrtkqXyA",
+      "type": "image"
+    },
+    {
+      "project": "CASCATA WATER RECLAMATION",
+      "filename": "cascata-02.jpg",
+      "original_name": "DJI_20260903080535_0163_D_FLIGHT1.JPG",
+      "path": "/assets/cascata-water-reclamation/cascata-02.jpg",
+      "width": 2560,
+      "height": 1920,
+      "aspect_ratio": "2560:1920 (1.33)",
+      "aspect_category": "Landscape",
+      "file_size_kb": 1656.9,
+      "drive_id": "14PvgtbLlnTGK8K-5KrZMVF5u4JK6G0YX",
+      "type": "image"
+    },
+    {
+      "project": "CASCATA WATER RECLAMATION",
+      "filename": "cascata-03.jpg",
+      "original_name": "DJI_20260903081829_0174_D_FLIGHT1.JPG",
+      "path": "/assets/cascata-water-reclamation/cascata-03.jpg",
+      "width": 2560,
+      "height": 1920,
+      "aspect_ratio": "2560:1920 (1.33)",
+      "aspect_category": "Landscape",
+      "file_size_kb": 1417.5,
+      "drive_id": "1cceleHD8mnkGxpF90xC20vEdEC549uxs",
+      "type": "image"
+    },
+    {
+      "project": "CASCATA WATER RECLAMATION",
+      "filename": "cascata-04.jpg",
+      "original_name": "DJI_20260903081836_0175_D_FLIGHT1.JPG",
+      "path": "/assets/cascata-water-reclamation/cascata-04.jpg",
+      "width": 2560,
+      "height": 1920,
+      "aspect_ratio": "2560:1920 (1.33)",
+      "aspect_category": "Landscape",
+      "file_size_kb": 1173.1,
+      "drive_id": "1BO2mEDGQJowYigWyPz3Ht2UcSZh3ipPn",
+      "type": "image"
+    },
+    {
+      "project": "CASCATA WATER RECLAMATION",
+      "filename": "cascata-05.jpg",
+      "original_name": "DJI_20260903081913_0179_D_FLIGHT1.JPG",
+      "path": "/assets/cascata-water-reclamation/cascata-05.jpg",
+      "width": 2560,
+      "height": 1920,
+      "aspect_ratio": "2560:1920 (1.33)",
+      "aspect_category": "Landscape",
+      "file_size_kb": 1505.5,
+      "drive_id": "1Xf-0vCc06rcOD31nUjGQ7HSpWLm8RTK7",
+      "type": "image"
+    },
+    {
+      "project": "CASCATA WATER RECLAMATION",
+      "filename": "cascata-06.jpg",
+      "original_name": "DJI_20260903091644_0249_D_FLIGHT1.JPG",
+      "path": "/assets/cascata-water-reclamation/cascata-06.jpg",
+      "width": 2560,
+      "height": 1920,
+      "aspect_ratio": "2560:1920 (1.33)",
+      "aspect_category": "Landscape",
+      "file_size_kb": 1460.9,
+      "drive_id": "1q7uJv5oammLZsUOJtyfQT9UQXF_7lq2m",
+      "type": "image"
+    },
+    {
+      "project": "CASCATA WATER RECLAMATION",
+      "filename": "cascata-07.jpg",
+      "original_name": "DJI_20260903091650_0250_D_FLIGHT1.JPG",
+      "path": "/assets/cascata-water-reclamation/cascata-07.jpg",
+      "width": 2560,
+      "height": 1920,
+      "aspect_ratio": "2560:1920 (1.33)",
+      "aspect_category": "Landscape",
+      "file_size_kb": 1605.5,
+      "drive_id": "1sufRkmtqJxZP2moia8P0bKXSyDegV4mt",
+      "type": "image"
+    },
+    {
+      "project": "CASCATA WATER RECLAMATION",
+      "filename": "cascata-08.jpg",
+      "original_name": "DJI_20260903094258_0262_D_FLIGHT1.JPG",
+      "path": "/assets/cascata-water-reclamation/cascata-08.jpg",
+      "width": 2560,
+      "height": 1920,
+      "aspect_ratio": "2560:1920 (1.33)",
+      "aspect_category": "Landscape",
+      "file_size_kb": 1587.9,
+      "drive_id": "1vIZPrnShl4B3nnT9rFRSmq3DtR1wRjo_",
+      "type": "image"
+    },
+    {
+      "project": "CASCATA WATER RECLAMATION",
+      "filename": "cascata-09.jpg",
+      "original_name": "DJI_20260903094321_0265_D_FLIGHT1.JPG",
+      "path": "/assets/cascata-water-reclamation/cascata-09.jpg",
+      "width": 2560,
+      "height": 1920,
+      "aspect_ratio": "2560:1920 (1.33)",
+      "aspect_category": "Landscape",
+      "file_size_kb": 1808.6,
+      "drive_id": "1kSHqIpev-9yPP3H3z3LGceTjpcke4RKN",
+      "type": "image"
+    },
+    {
+      "project": "CASCATA WATER RECLAMATION",
+      "filename": "cascata-10.jpg",
+      "original_name": "DJI_20260919091304_0339_D_FLIGHT1.JPG",
+      "path": "/assets/cascata-water-reclamation/cascata-10.jpg",
+      "width": 2560,
+      "height": 1920,
+      "aspect_ratio": "2560:1920 (1.33)",
+      "aspect_category": "Landscape",
+      "file_size_kb": 1790.1,
+      "drive_id": "102j5En2VFkdMIVJKdbL2cZ0OPmywpNdr",
+      "type": "image"
+    },
+    {
+      "project": "CASCATA WATER RECLAMATION",
+      "filename": "cascata-11.jpg",
+      "original_name": "DJI_20260919092544_0345_D_FLIGHT1.JPG",
+      "path": "/assets/cascata-water-reclamation/cascata-11.jpg",
+      "width": 2560,
+      "height": 1920,
+      "aspect_ratio": "2560:1920 (1.33)",
+      "aspect_category": "Landscape",
+      "file_size_kb": 1645.2,
+      "drive_id": "1trWgjuIma1mCPzj6b0V4uKmlF9HRpDI5",
+      "type": "image"
+    },
+    {
+      "project": "CASCATA WATER RECLAMATION",
+      "filename": "cascata-12.jpg",
+      "original_name": "DJI_20261008082537_0344_D_FLIGHT1.JPG",
+      "path": "/assets/cascata-water-reclamation/cascata-12.jpg",
+      "width": 2560,
+      "height": 1920,
+      "aspect_ratio": "2560:1920 (1.33)",
+      "aspect_category": "Landscape",
+      "file_size_kb": 1671.9,
+      "drive_id": "1Dz-hf6BXetkhMqzsi2fdCk_1_pg5Y4Dt",
+      "type": "image"
+    },
+    {
+      "project": "WHISTLING STRAITS",
+      "filename": "whistling-01.jpg",
+      "original_name": "Screenshot 2026-10-11 at 9.55.01 AM.png",
+      "path": "/assets/whistling-straits/whistling-01.jpg",
+      "width": 1866,
+      "height": 1012,
+      "aspect_ratio": "1866:1012 (1.84)",
+      "aspect_category": "Landscape",
+      "file_size_kb": 3168.3,
+      "drive_id": "17mQQyDvufiwPhugDxz0vuDZYL51Xc5NB",
+      "type": "image"
+    },
+    {
+      "project": "WHISTLING STRAITS",
+      "filename": "whistling-02.jpg",
+      "original_name": "Screenshot 2026-10-11 at 10.51.45 AM.png",
+      "path": "/assets/whistling-straits/whistling-02.jpg",
+      "width": 1892,
+      "height": 1029,
+      "aspect_ratio": "1892:1029 (1.84)",
+      "aspect_category": "Landscape",
+      "file_size_kb": 4053.3,
+      "drive_id": "1CJ2ldJlZzJQxWisB0Utwx1NRsJxW0qq1",
+      "type": "image"
+    },
+    {
+      "project": "WHISTLING STRAITS",
+      "filename": "whistling-03.jpg",
+      "original_name": "Screenshot 2026-10-11 at 10.52.46 AM.png",
+      "path": "/assets/whistling-straits/whistling-03.jpg",
+      "width": 1900,
+      "height": 1033,
+      "aspect_ratio": "1900:1033 (1.84)",
+      "aspect_category": "Landscape",
+      "file_size_kb": 3547.0,
+      "drive_id": "1ds6sjHCu1dwUklCMd6pYnvzDwKhiTdzE",
+      "type": "image"
+    },
+    {
+      "project": "WHISTLING STRAITS",
+      "filename": "whistling-04.jpg",
+      "original_name": "Screenshot 2026-10-11 at 10.55.20 AM.png",
+      "path": "/assets/whistling-straits/whistling-04.jpg",
+      "width": 592,
+      "height": 1035,
+      "aspect_ratio": "592:1035 (0.57)",
+      "aspect_category": "Portrait",
+      "file_size_kb": 1130.6,
+      "drive_id": "11zjUppdEfuM0pnoOFxdwFHVXDf91uTwK",
+      "type": "image"
+    },
+    {
+      "project": "WHISTLING STRAITS",
+      "filename": "whistling-05.jpg",
+      "original_name": "Screenshot 2026-10-11 at 10.58.22 AM.png",
+      "path": "/assets/whistling-straits/whistling-05.jpg",
+      "width": 1694,
+      "height": 950,
+      "aspect_ratio": "1694:950 (1.78)",
+      "aspect_category": "16:9 Landscape",
+      "file_size_kb": 3468.8,
+      "drive_id": "1dnt68FjY1Hgyzb-17vMC3ykDGmgZDGpr",
+      "type": "image"
+    },
+    {
+      "project": "WHISTLING STRAITS",
+      "filename": "whistling-06.jpg",
+      "original_name": "Screenshot 2026-10-11 at 11.21.35 AM.png",
+      "path": "/assets/whistling-straits/whistling-06.jpg",
+      "width": 1685,
+      "height": 939,
+      "aspect_ratio": "1685:939 (1.79)",
+      "aspect_category": "16:9 Landscape",
+      "file_size_kb": 2703.5,
+      "drive_id": "1kvFKZC8-rsNprcbSs-2XRo9451BfAKzg",
+      "type": "image"
+    },
+    {
+      "project": "WHISTLING STRAITS",
+      "filename": "whistling-07.jpg",
+      "original_name": "Screenshot 2026-10-11 at 11.22.42 AM.png",
+      "path": "/assets/whistling-straits/whistling-07.jpg",
+      "width": 1679,
+      "height": 939,
+      "aspect_ratio": "1679:939 (1.79)",
+      "aspect_category": "16:9 Landscape",
+      "file_size_kb": 2720.5,
+      "drive_id": "1Ufe6cmgR6_7WZO2yZawPK6Z2FYsMVCqt",
+      "type": "image"
+    },
+    {
+      "project": "WHISTLING STRAITS",
+      "filename": "whistling-08.jpg",
+      "original_name": "Screenshot 2026-10-11 at 11.31.29 AM.png",
+      "path": "/assets/whistling-straits/whistling-08.jpg",
+      "width": 539,
+      "height": 934,
+      "aspect_ratio": "539:934 (0.58)",
+      "aspect_category": "Portrait",
+      "file_size_kb": 1007.9,
+      "drive_id": "1kEnDI2Q09YubS115jHF6shOpC04jw69d",
+      "type": "image"
+    },
+    {
+      "project": "WHISTLING STRAITS",
+      "filename": "whistling-09.jpg",
+      "original_name": "Screenshot 2026-10-13 at 11.16.03 AM.png",
+      "path": "/assets/whistling-straits/whistling-09.jpg",
+      "width": 1682,
+      "height": 938,
+      "aspect_ratio": "1682:938 (1.79)",
+      "aspect_category": "16:9 Landscape",
+      "file_size_kb": 2579.1,
+      "drive_id": "15lTO6GEpPjk_xfMFjcbXLu87-v51vrqa",
+      "type": "image"
+    },
+    {
+      "project": "WHISTLING STRAITS",
+      "filename": "whistling-10.jpg",
+      "original_name": "Screenshot 2026-10-15 at 4.12.31 PM.png",
+      "path": "/assets/whistling-straits/whistling-10.jpg",
+      "width": 1881,
+      "height": 1001,
+      "aspect_ratio": "1881:1001 (1.88)",
+      "aspect_category": "Landscape",
+      "file_size_kb": 2228.9,
+      "drive_id": "1OFNLtpQ5W2Vt95Cds0gTwIVkIcMCNusX",
+      "type": "image"
+    },
+    {
+      "project": "WHISTLING STRAITS",
+      "filename": "whistling-11.jpg",
+      "original_name": "Screenshot 2026-10-15 at 4.13.05 PM.png",
+      "path": "/assets/whistling-straits/whistling-11.jpg",
+      "width": 1876,
+      "height": 1040,
+      "aspect_ratio": "1876:1040 (1.8)",
+      "aspect_category": "16:9 Landscape",
+      "file_size_kb": 2285.0,
+      "drive_id": "1Y_wzfNLcr1X1km2PHNvft-1acURpER6g",
+      "type": "image"
+    },
+    {
+      "project": "WHISTLING STRAITS",
+      "filename": "whistling-12.jpg",
+      "original_name": "Screenshot 2026-10-15 at 4.15.23 PM.png",
+      "path": "/assets/whistling-straits/whistling-12.jpg",
+      "width": 1883,
+      "height": 1038,
+      "aspect_ratio": "1883:1038 (1.81)",
+      "aspect_category": "Landscape",
+      "file_size_kb": 2889.2,
+      "drive_id": "1Z56w2OX9W08h0aivdNnzfuq7OsK6pdps",
+      "type": "image"
+    },
+    {
+      "project": "WHISTLING STRAITS",
+      "filename": "whistling-13.jpg",
+      "original_name": "Screenshot 2026-10-15 at 4.16.47 PM.png",
+      "path": "/assets/whistling-straits/whistling-13.jpg",
+      "width": 1870,
+      "height": 1035,
+      "aspect_ratio": "1870:1035 (1.81)",
+      "aspect_category": "Landscape",
+      "file_size_kb": 2241.3,
+      "drive_id": "1tjFAOmVs-Vv8BOvuWr_NLHHiGSF4yA8_",
+      "type": "image"
+    },
+    {
+      "project": "WHISTLING STRAITS",
+      "filename": "whistling-14.jpg",
+      "original_name": "Screenshot 2026-10-15 at 4.21.03 PM.png",
+      "path": "/assets/whistling-straits/whistling-14.jpg",
+      "width": 589,
+      "height": 1061,
+      "aspect_ratio": "589:1061 (0.56)",
+      "aspect_category": "Portrait",
+      "file_size_kb": 771.4,
+      "drive_id": "1JiJ6jWEWPF1ceMh4UqQVlWcSRrvOa_pA",
+      "type": "image"
+    },
+    {
+      "project": "WHISTLING STRAITS",
+      "filename": "whistling-15.jpg",
+      "original_name": "Screenshot 2026-10-16 at 12.27.12 PM.png",
+      "path": "/assets/whistling-straits/whistling-15.jpg",
+      "width": 1881,
+      "height": 1031,
+      "aspect_ratio": "1881:1031 (1.82)",
+      "aspect_category": "Landscape",
+      "file_size_kb": 2157.6,
+      "drive_id": "1Zqnv4ZamnSkAn7GjxrHSlGALfJodOpSd",
+      "type": "image"
+    }
+  ],
+  "projects": {
+    "serket": {
+      "title": "SERKET",
+      "folder": "public/assets/serket",
+      "photos": [
+        {
+          "name": "serket-01.jpg",
+          "original": "Serket1.JPG",
+          "id": "1O5sA886s853uTyN06lr40Nw4Qr8uQuVD"
+        },
+        {
+          "name": "serket-02.jpg",
+          "original": "Copy of Serket2.JPG",
+          "id": "1IupGnSA9qNZyfdtAr4mDsmA7R0ShnbPk"
+        },
+        {
+          "name": "serket-03.jpg",
+          "original": "Serket5.JPG",
+          "id": "1OYdjoNaBvVJKIRhRAzijW9UN9a5H13yq"
+        },
+        {
+          "name": "serket-04.jpg",
+          "original": "Copy of DJI_20260524074657_0022_D_FLIGHT1.JPG",
+          "id": "1B-8xhDjzFousjb9TpYRravvAJbWWxr_J"
+        },
+        {
+          "name": "serket-05.jpg",
+          "original": "Screenshot 2026-09-15 at 4.14.22 PM.png",
+          "id": "1DWUy5X_igowyQrKlSKd3p_MOyFWq1GQq"
+        },
+        {
+          "name": "serket-06.jpg",
+          "original": "Screenshot 2026-09-15 at 4.23.01 PM.png",
+          "id": "1VfUQVmUBn2TXxi-cZzjS14JiEhnEwQI7"
+        },
+        {
+          "name": "serket-07.jpg",
+          "original": "Screenshot 2026-09-15 at 4.23.42 PM.png",
+          "id": "1qMXyaUgC9XCYV7pob9_9vKOORu5e3uXY"
+        },
+        {
+          "name": "serket-08.jpg",
+          "original": "Screenshot 2026-09-15 at 4.24.58 PM.png",
+          "id": "1CMi0YBBVzhkdFXtB839qTcAfAdMbJduS"
+        },
+        {
+          "name": "serket-09.jpg",
+          "original": "Screenshot 2026-09-15 at 4.32.31 PM.png",
+          "id": "1gVSjtpsCj2RK60cvUSC0JRkIPS6dtpr3"
+        },
+        {
+          "name": "serket-10.jpg",
+          "original": "DJI_20260524074631_0021_D_FLIGHT1.DNG",
+          "id": "1EckbX78yMG67uhexeTYyS0xl_1aVKTnb"
+        }
+      ],
+      "videos": [
+        {
+          "name": "Serket Sample Reel",
+          "original": "Serket Sample Reel.mov",
+          "id": "17ioJH4iI6wQKJLZyb7x8pdbFv4qThCFA",
+          "size": "190.1 MB",
+          "poster": "/assets/serket/video-poster-1.jpg"
+        },
+        {
+          "name": "Serket Sizzle Horizontal",
+          "original": "Serket Sizzle Horizontal.mov",
+          "id": "1IC1auYqQ-h1OhyS3rktQL7zPlAKZo3Y5",
+          "size": "1,019.3 MB",
+          "poster": "/assets/serket/video-poster-2.jpg"
+        }
+      ]
+    },
+    "cascata": {
+      "title": "CASCATA WATER RECLAMATION",
+      "subtitle": "BOULDER CITY, NEVADA",
+      "folder": "public/assets/cascata-water-reclamation",
+      "photos": [
+        {
+          "name": "cascata-01.jpg",
+          "original": "DJI_20260612074249_0032_D_FLIGHT1.JPG",
+          "id": "1tt6MC4IXFf_O4pRNaWp5BOaFDrtkqXyA"
+        },
+        {
+          "name": "cascata-02.jpg",
+          "original": "DJI_20260903080535_0163_D_FLIGHT1.JPG",
+          "id": "14PvgtbLlnTGK8K-5KrZMVF5u4JK6G0YX"
+        },
+        {
+          "name": "cascata-03.jpg",
+          "original": "DJI_20260903081829_0174_D_FLIGHT1.JPG",
+          "id": "1cceleHD8mnkGxpF90xC20vEdEC549uxs"
+        },
+        {
+          "name": "cascata-04.jpg",
+          "original": "DJI_20260903081836_0175_D_FLIGHT1.JPG",
+          "id": "1BO2mEDGQJowYigWyPz3Ht2UcSZh3ipPn"
+        },
+        {
+          "name": "cascata-05.jpg",
+          "original": "DJI_20260903081913_0179_D_FLIGHT1.JPG",
+          "id": "1Xf-0vCc06rcOD31nUjGQ7HSpWLm8RTK7"
+        },
+        {
+          "name": "cascata-06.jpg",
+          "original": "DJI_20260903091644_0249_D_FLIGHT1.JPG",
+          "id": "1q7uJv5oammLZsUOJtyfQT9UQXF_7lq2m"
+        },
+        {
+          "name": "cascata-07.jpg",
+          "original": "DJI_20260903091650_0250_D_FLIGHT1.JPG",
+          "id": "1sufRkmtqJxZP2moia8P0bKXSyDegV4mt"
+        },
+        {
+          "name": "cascata-08.jpg",
+          "original": "DJI_20260903094258_0262_D_FLIGHT1.JPG",
+          "id": "1vIZPrnShl4B3nnT9rFRSmq3DtR1wRjo_"
+        },
+        {
+          "name": "cascata-09.jpg",
+          "original": "DJI_20260903094321_0265_D_FLIGHT1.JPG",
+          "id": "1kSHqIpev-9yPP3H3z3LGceTjpcke4RKN"
+        },
+        {
+          "name": "cascata-10.jpg",
+          "original": "DJI_20260919091304_0339_D_FLIGHT1.JPG",
+          "id": "102j5En2VFkdMIVJKdbL2cZ0OPmywpNdr"
+        },
+        {
+          "name": "cascata-11.jpg",
+          "original": "DJI_20260919092544_0345_D_FLIGHT1.JPG",
+          "id": "1trWgjuIma1mCPzj6b0V4uKmlF9HRpDI5"
+        },
+        {
+          "name": "cascata-12.jpg",
+          "original": "DJI_20261008082537_0344_D_FLIGHT1.JPG",
+          "id": "1Dz-hf6BXetkhMqzsi2fdCk_1_pg5Y4Dt"
+        }
+      ],
+      "videos": [
+        {
+          "name": "Cascata Overview Reel",
+          "original": "Copy of Copy of 1011 (6).mov",
+          "id": "1lxUECRKAhuChbHn_w30VjkPFa1im35PZ",
+          "size": "428 MB",
+          "poster": null
+        },
+        {
+          "name": "Cascata Flight Reel",
+          "original": "Copy of DJI_20260919094032_0350_D_FLIGHT1.MP4",
+          "id": "1VbGLYRMf8yLy6_lJ2KbEIsJmelem-vBq",
+          "size": "681.2 MB",
+          "poster": "/assets/cascata-water-reclamation/video-poster-2.jpg"
+        }
+      ]
+    },
+    "whistling-straits": {
+      "title": "WHISTLING STRAITS",
+      "folder": "public/assets/whistling-straits",
+      "photos": [
+        {
+          "name": "whistling-01.jpg",
+          "original": "Screenshot 2026-10-11 at 9.55.01 AM.png",
+          "id": "17mQQyDvufiwPhugDxz0vuDZYL51Xc5NB"
+        },
+        {
+          "name": "whistling-02.jpg",
+          "original": "Screenshot 2026-10-11 at 10.51.45 AM.png",
+          "id": "1CJ2ldJlZzJQxWisB0Utwx1NRsJxW0qq1"
+        },
+        {
+          "name": "whistling-03.jpg",
+          "original": "Screenshot 2026-10-11 at 10.52.46 AM.png",
+          "id": "1ds6sjHCu1dwUklCMd6pYnvzDwKhiTdzE"
+        },
+        {
+          "name": "whistling-04.jpg",
+          "original": "Screenshot 2026-10-11 at 10.55.20 AM.png",
+          "id": "11zjUppdEfuM0pnoOFxdwFHVXDf91uTwK"
+        },
+        {
+          "name": "whistling-05.jpg",
+          "original": "Screenshot 2026-10-11 at 10.58.22 AM.png",
+          "id": "1dnt68FjY1Hgyzb-17vMC3ykDGmgZDGpr"
+        },
+        {
+          "name": "whistling-06.jpg",
+          "original": "Screenshot 2026-10-11 at 11.21.35 AM.png",
+          "id": "1kvFKZC8-rsNprcbSs-2XRo9451BfAKzg"
+        },
+        {
+          "name": "whistling-07.jpg",
+          "original": "Screenshot 2026-10-11 at 11.22.42 AM.png",
+          "id": "1Ufe6cmgR6_7WZO2yZawPK6Z2FYsMVCqt"
+        },
+        {
+          "name": "whistling-08.jpg",
+          "original": "Screenshot 2026-10-11 at 11.31.29 AM.png",
+          "id": "1kEnDI2Q09YubS115jHF6shOpC04jw69d"
+        },
+        {
+          "name": "whistling-09.jpg",
+          "original": "Screenshot 2026-10-13 at 11.16.03 AM.png",
+          "id": "15lTO6GEpPjk_xfMFjcbXLu87-v51vrqa"
+        },
+        {
+          "name": "whistling-10.jpg",
+          "original": "Screenshot 2026-10-15 at 4.12.31 PM.png",
+          "id": "1OFNLtpQ5W2Vt95Cds0gTwIVkIcMCNusX"
+        },
+        {
+          "name": "whistling-11.jpg",
+          "original": "Screenshot 2026-10-15 at 4.13.05 PM.png",
+          "id": "1Y_wzfNLcr1X1km2PHNvft-1acURpER6g"
+        },
+        {
+          "name": "whistling-12.jpg",
+          "original": "Screenshot 2026-10-15 at 4.15.23 PM.png",
+          "id": "1Z56w2OX9W08h0aivdNnzfuq7OsK6pdps"
+        },
+        {
+          "name": "whistling-13.jpg",
+          "original": "Screenshot 2026-10-15 at 4.16.47 PM.png",
+          "id": "1tjFAOmVs-Vv8BOvuWr_NLHHiGSF4yA8_"
+        },
+        {
+          "name": "whistling-14.jpg",
+          "original": "Screenshot 2026-10-15 at 4.21.03 PM.png",
+          "id": "1JiJ6jWEWPF1ceMh4UqQVlWcSRrvOa_pA"
+        },
+        {
+          "name": "whistling-15.jpg",
+          "original": "Screenshot 2026-10-16 at 12.27.12 PM.png",
+          "id": "1Zqnv4ZamnSkAn7GjxrHSlGALfJodOpSd"
+        }
+      ],
+      "videos": [
+        {
+          "name": "Whistling Straits Aerial Survey",
+          "original": "DJI_0006.MP4",
+          "id": "1HD3zXyWBnrfRrr2_dKl3EqICDNXtliBB",
+          "size": "122.5 MB",
+          "poster": "/assets/whistling-straits/video-poster-1.jpg"
+        },
+        {
+          "name": "Whistling Straits Course Flight 1",
+          "original": "DJI_0050.MP4",
+          "id": "17R1SXHkOTzpzE11_L-TYe68iVwppOEPE",
+          "size": "103.5 MB",
+          "poster": "/assets/whistling-straits/video-poster-2.jpg"
+        },
+        {
+          "name": "Whistling Straits Course Flight 2",
+          "original": "DJI_0055.MP4",
+          "id": "1JhKCMIFy-X9_EVIYdqTCax_HYsb78xBT",
+          "size": "143.3 MB",
+          "poster": "/assets/whistling-straits/video-poster-3.jpg"
+        },
+        {
+          "name": "Whistling Straits Coastal Sweep",
+          "original": "DJI_0059.MP4",
+          "id": "1k0TQqAWYl4IFSb70EMvS4X59OwVWNTxe",
+          "size": "409.3 MB",
+          "poster": "/assets/whistling-straits/video-poster-4.jpg"
+        },
+        {
+          "name": "Whistling Straits Hole Approach",
+          "original": "DJI_0078.MP4",
+          "id": "1rEER0TW-mUAZ5oy66jAPTvx1XY5dCBNI",
+          "size": "46.7 MB",
+          "poster": "/assets/whistling-straits/video-poster-5.jpg"
+        }
+      ]
+    }
+  }
+}
