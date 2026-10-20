@@ -41,12 +41,12 @@ export const FAQSection: React.FC = () => {
           <div className="lg:col-span-5">
             <div className="inline-flex items-center gap-2 mb-3">
               <span className="w-6 h-[2px] bg-[#FFB800]" />
-              <span className="text-xs font-mono uppercase tracking-[0.25em] font-semibold text-neutral-500">
+              <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.22em] font-semibold text-neutral-500">
                 FAQ & PROTOCOLS
               </span>
             </div>
             
-            <h2 className="font-display text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-neutral-950 leading-tight mb-8">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-[32px] lg:text-[34px] font-semibold tracking-[-0.015em] text-neutral-950 leading-[1.18] mb-8">
               Frequently asked questions about commercial drone operations
             </h2>
 
@@ -59,7 +59,7 @@ export const FAQSection: React.FC = () => {
                   className="w-12 h-12 rounded-full object-cover border-2 border-[#FFB800]"
                 />
                 <div>
-                  <h4 className="font-display text-sm font-bold uppercase text-neutral-900">
+                  <h4 className="font-display text-sm font-semibold uppercase text-neutral-900">
                     Chief Pilot On Duty
                   </h4>
                   <p className="text-xs text-neutral-500 font-mono">
@@ -101,7 +101,7 @@ export const FAQSection: React.FC = () => {
                     className="w-full text-left p-6 sm:p-7 flex items-center justify-between gap-4 focus:outline-none"
                     aria-expanded={isOpen}
                   >
-                    <span className="font-display text-base sm:text-lg font-bold text-neutral-900 uppercase">
+                    <span className="font-display text-base sm:text-[17px] font-semibold text-neutral-900 leading-snug">
                       {faq.q}
                     </span>
                     <div

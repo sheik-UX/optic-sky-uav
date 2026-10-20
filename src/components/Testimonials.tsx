@@ -61,12 +61,12 @@ export const Testimonials: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
           <div className="inline-flex items-center gap-2 mb-3">
             <span className="w-6 h-[2px] bg-[#FFB800]" />
-            <span className="text-xs font-mono uppercase tracking-[0.25em] font-semibold text-neutral-500">
+            <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.22em] font-semibold text-neutral-500">
               CLIENT TESTIMONIALS
             </span>
             <span className="w-6 h-[2px] bg-[#FFB800]" />
           </div>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-neutral-950 leading-[1.08]">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-[32px] lg:text-[36px] font-semibold uppercase tracking-[-0.015em] text-neutral-950 leading-[1.15]">
             HEAR THE STORIES STRAIGHT <br />
             FROM THE PEOPLE WE'VE SERVED
           </h2>
@@ -87,7 +87,7 @@ export const Testimonials: React.FC = () => {
                   ))}
                 </div>
 
-                <p className="text-sm text-neutral-700 leading-relaxed font-normal mb-8 italic">
+                <p className="text-sm sm:text-[15px] text-neutral-700 leading-relaxed font-normal mb-8 italic">
                   "{rev.quote}"
                 </p>
               </div>
@@ -101,7 +101,7 @@ export const Testimonials: React.FC = () => {
                   loading="lazy"
                 />
                 <div>
-                  <h4 className="font-display text-sm font-bold text-neutral-900 uppercase">
+                  <h4 className="font-display text-sm font-semibold text-neutral-900">
                     {rev.name}
                   </h4>
                   <p className="text-xs text-neutral-500 font-mono">

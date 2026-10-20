@@ -32,12 +32,12 @@ export const CaseStudyStory: React.FC<CaseStudyStoryProps> = ({ onOpenCaseStudy 
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 mb-3">
             <span className="w-6 h-[2px] bg-[#FFB800]" />
-            <span className="text-xs font-mono uppercase tracking-[0.25em] font-semibold text-neutral-500">
+            <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.22em] font-semibold text-neutral-500">
               PRODUCTION CASE STUDY
             </span>
             <span className="w-6 h-[2px] bg-[#FFB800]" />
           </div>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-neutral-950 leading-[1.08]">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-[32px] lg:text-[36px] font-semibold uppercase tracking-[-0.015em] text-neutral-950 leading-[1.15]">
             THE ART OF AERIAL <br />
             STORYTELLING: BRINGING <br />
             PLACES TO LIFE FROM ABOVE
@@ -66,10 +66,10 @@ export const CaseStudyStory: React.FC<CaseStudyStoryProps> = ({ onOpenCaseStudy 
                   <span className="inline-block px-2.5 py-1 rounded bg-[#FFB800] text-black font-mono text-[10px] font-black tracking-widest uppercase mb-3">
                     {s.step}
                   </span>
-                  <h3 className="font-display text-lg font-bold uppercase text-white mb-2 leading-snug">
+                  <h3 className="font-display text-base sm:text-lg font-semibold uppercase text-white mb-2 leading-[1.3]">
                     {s.title}
                   </h3>
-                  <p className="text-xs text-neutral-300 leading-relaxed font-normal">
+                  <p className="text-xs sm:text-[13px] text-neutral-300 leading-relaxed font-normal">
                     {s.detail}
                   </p>
                 </div>

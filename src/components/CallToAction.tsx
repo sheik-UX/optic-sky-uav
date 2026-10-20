@@ -26,20 +26,20 @@ export const CallToAction: React.FC<CallToActionProps> = ({
         {/* Eyebrow */}
         <div className="inline-flex items-center gap-2 mb-6">
           <span className="w-6 h-[2px] bg-[#FFB800]" />
-          <span className="text-xs font-mono uppercase tracking-[0.25em] font-semibold text-[#FFB800]">
+          <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.22em] font-semibold text-[#FFB800]">
             TAKE FLIGHT WITH US
           </span>
           <span className="w-6 h-[2px] bg-[#FFB800]" />
         </div>
 
-        {/* Display Headline Matching Reference Screenshot */}
-        <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold uppercase text-white tracking-tight leading-[1.05] mb-6">
+        {/* Display Headline: Subordinate to Hero (42px vs Hero 64px) */}
+        <h2 className="font-display text-3xl sm:text-4xl lg:text-[42px] font-bold uppercase text-white tracking-[-0.015em] leading-[1.1] mb-6">
           HAVE A PROPERTY WORTH <br />
           BEING SEEN FROM ABOVE?
         </h2>
 
         {/* Subhead */}
-        <p className="text-base sm:text-lg text-neutral-300 font-normal leading-relaxed max-w-2xl mb-12 text-balance">
+        <p className="text-base sm:text-[17px] lg:text-[18px] text-neutral-300 font-normal leading-[1.65] max-w-2xl mb-12 text-balance">
           Schedule your commercial flight consultation today. Our certified flight team handles airspace authorization, optimal sun alignment, and complete 4K cinema master delivery.
         </p>
 

@@ -80,11 +80,11 @@ export const SelectedWork: React.FC<SelectedWorkProps> = ({ onOpenLightbox }) =>
           <div>
             <div className="inline-flex items-center gap-2 mb-3">
               <span className="w-6 h-[2px] bg-[#FFB800]" />
-              <span className="text-xs font-mono uppercase tracking-[0.25em] font-semibold text-[#FFB800]">
+              <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.22em] font-semibold text-[#FFB800]">
                 PORTFOLIO SHOWCASE
               </span>
             </div>
-            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight text-white leading-none">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-[32px] lg:text-[36px] font-semibold uppercase tracking-[-0.015em] text-white leading-[1.15]">
               SELECTED WORK
             </h2>
           </div>
@@ -122,7 +122,7 @@ export const SelectedWork: React.FC<SelectedWorkProps> = ({ onOpenLightbox }) =>
                     {item.badge}
                   </span>
                   
-                  <h3 className="font-display text-2xl sm:text-3xl font-bold uppercase text-white mb-2 leading-tight">
+                  <h3 className="font-display text-xl sm:text-2xl lg:text-[24px] font-semibold uppercase text-white mb-2 leading-[1.2]">
                     {item.title}
                   </h3>
                   
@@ -130,7 +130,7 @@ export const SelectedWork: React.FC<SelectedWorkProps> = ({ onOpenLightbox }) =>
                     {item.location}
                   </p>
                   
-                  <p className="text-sm text-neutral-300 leading-relaxed font-normal mb-8">
+                  <p className="text-sm sm:text-[15px] text-neutral-300 leading-relaxed font-normal mb-8">
                     {item.description}
                   </p>
                 </div>

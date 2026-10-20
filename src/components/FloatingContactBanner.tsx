@@ -40,10 +40,10 @@ export const FloatingContactBanner: React.FC = () => {
           
           {/* Card Top Title */}
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <span className="text-xs font-mono uppercase tracking-[0.25em] font-semibold text-neutral-500 block mb-2">
+            <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.22em] font-semibold text-neutral-500 block mb-2">
               FLIGHT OPERATIONS & DISPATCH
             </span>
-            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold uppercase text-neutral-950 leading-tight">
+            <h2 className="font-display text-xl sm:text-2xl md:text-[28px] lg:text-[32px] font-semibold uppercase tracking-[-0.015em] text-neutral-950 leading-[1.18]">
               ALL-INCLUSIVE AERIAL PRODUCTION
             </h2>
           </div>
@@ -59,7 +59,7 @@ export const FloatingContactBanner: React.FC = () => {
                   <MapPin size={18} />
                 </div>
                 <div>
-                  <h4 className="font-display text-sm font-bold uppercase text-neutral-900">
+                  <h4 className="font-display text-sm font-semibold uppercase text-neutral-900">
                     Las Vegas, Nevada
                   </h4>
                   <p className="text-xs text-neutral-500 font-mono mt-0.5">
@@ -73,7 +73,7 @@ export const FloatingContactBanner: React.FC = () => {
                   <Camera size={18} />
                 </div>
                 <div>
-                  <h4 className="font-display text-sm font-bold uppercase text-neutral-900">
+                  <h4 className="font-display text-sm font-semibold uppercase text-neutral-900">
                     4K/60FPS ProRes & 48MP HDR
                   </h4>
                   <p className="text-xs text-neutral-500 font-mono mt-0.5">
@@ -87,7 +87,7 @@ export const FloatingContactBanner: React.FC = () => {
                   <ShieldCheck size={18} />
                 </div>
                 <div>
-                  <h4 className="font-display text-sm font-bold uppercase text-neutral-900">
+                  <h4 className="font-display text-sm font-semibold uppercase text-neutral-900">
                     FAA Part 107 & $5M Insured
                   </h4>
                   <p className="text-xs text-neutral-500 font-mono mt-0.5">
@@ -101,7 +101,7 @@ export const FloatingContactBanner: React.FC = () => {
                   <Zap size={18} />
                 </div>
                 <div>
-                  <h4 className="font-display text-sm font-bold uppercase text-neutral-900">
+                  <h4 className="font-display text-sm font-semibold uppercase text-neutral-900">
                     Rapid 48-Hour Turnaround
                   </h4>
                   <p className="text-xs text-neutral-500 font-mono mt-0.5">
@@ -131,7 +131,7 @@ export const FloatingContactBanner: React.FC = () => {
 
             {/* Right Column: Dark Black Container with Yellow Checkmarks Matching Reference */}
             <div className="lg:col-span-6 bg-[#13140e] text-white p-8 sm:p-9 rounded-2xl border border-neutral-800 shadow-xl">
-              <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#FFB800] font-bold block mb-4">
+              <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-[#FFB800] font-semibold block mb-4">
                 OPERATIONAL ADVANTAGE
               </span>
 

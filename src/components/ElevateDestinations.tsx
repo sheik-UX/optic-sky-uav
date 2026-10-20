@@ -16,18 +16,18 @@ export const ElevateDestinations: React.FC<ElevateDestinationsProps> = ({ onPlay
           <div className="lg:col-span-7">
             <div className="inline-flex items-center gap-2 mb-4">
               <span className="w-6 h-[2px] bg-[#FFB800]" />
-              <span className="text-xs font-mono uppercase tracking-[0.2em] font-semibold text-neutral-500">
+              <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.22em] font-semibold text-neutral-500">
                 AERIAL VISUALIZATION & CAPTURE
               </span>
             </div>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-neutral-950 leading-[1.05]">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-[32px] lg:text-[36px] font-semibold uppercase tracking-[-0.015em] text-neutral-950 leading-[1.15]">
               AERIAL PERSPECTIVES THAT <br />
               ELEVATE DESTINATIONS
             </h2>
           </div>
 
           <div className="lg:col-span-5">
-            <p className="text-base sm:text-lg text-neutral-600 leading-relaxed font-normal">
+            <p className="text-base sm:text-[17px] lg:text-[18px] text-neutral-600 leading-[1.65] font-normal">
               From championship fairways to landmark commercial architecture, our ultra-high-definition aerial cinematography captures the true scale, contours, and character that ground-level photography cannot convey.
             </p>
           </div>
@@ -102,7 +102,7 @@ export const ElevateDestinations: React.FC<ElevateDestinationsProps> = ({ onPlay
                 </span>
                 <Camera size={18} className="text-neutral-700" />
               </div>
-              <h3 className="font-display text-xl font-bold uppercase text-neutral-900 mb-2">
+              <h3 className="font-display text-lg sm:text-xl lg:text-[22px] font-semibold text-neutral-900 mb-2 leading-[1.25]">
                 Course & Turf Fidelity
               </h3>
               <p className="text-sm text-neutral-600 leading-relaxed font-normal">
@@ -123,7 +123,7 @@ export const ElevateDestinations: React.FC<ElevateDestinationsProps> = ({ onPlay
                 </span>
                 <Film size={18} className="text-neutral-700" />
               </div>
-              <h3 className="font-display text-xl font-bold uppercase text-neutral-900 mb-2">
+              <h3 className="font-display text-lg sm:text-xl lg:text-[22px] font-semibold text-neutral-900 mb-2 leading-[1.25]">
                 Cinematic Trajectories
               </h3>
               <p className="text-sm text-neutral-600 leading-relaxed font-normal">
@@ -144,7 +144,7 @@ export const ElevateDestinations: React.FC<ElevateDestinationsProps> = ({ onPlay
                 </span>
                 <ShieldCheck size={20} className="text-[#FFB800]" />
               </div>
-              <h3 className="font-display text-xl font-bold uppercase text-white mb-2">
+              <h3 className="font-display text-lg sm:text-xl lg:text-[22px] font-semibold text-white mb-2 leading-[1.25]">
                 Operational Compliance
               </h3>
               <p className="text-sm text-neutral-300 leading-relaxed font-normal">

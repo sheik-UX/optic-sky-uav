@@ -59,7 +59,7 @@ export const VisualTrioBanner: React.FC<VisualTrioBannerProps> = ({
 
         {/* Action Row: Headline Left, Dual Pill Buttons Right */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6">
-          <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold uppercase text-white leading-tight">
+          <h3 className="font-display text-2xl sm:text-3xl lg:text-[32px] font-semibold text-white leading-[1.18] tracking-[-0.015em]">
             Ready to see your world <br className="hidden sm:block" />
             from above?
           </h3>

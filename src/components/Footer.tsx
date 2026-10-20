@@ -39,7 +39,7 @@ export const Footer: React.FC = () => {
 
           {/* Column 2: Capabilities / Services */}
           <div className="lg:col-span-3">
-            <h4 className="font-display text-xs uppercase tracking-widest text-neutral-300 font-bold mb-5">
+            <h4 className="font-display text-xs uppercase tracking-[0.2em] text-neutral-300 font-semibold mb-5">
               Capabilities
             </h4>
             <ul className="space-y-3 text-sm font-normal text-neutral-400">
@@ -73,7 +73,7 @@ export const Footer: React.FC = () => {
 
           {/* Column 3: Portfolio & Production */}
           <div className="lg:col-span-2">
-            <h4 className="font-display text-xs uppercase tracking-widest text-neutral-300 font-bold mb-5">
+            <h4 className="font-display text-xs uppercase tracking-[0.2em] text-neutral-300 font-semibold mb-5">
               Portfolio
             </h4>
             <ul className="space-y-3 text-sm font-normal text-neutral-400">
@@ -107,7 +107,7 @@ export const Footer: React.FC = () => {
 
           {/* Column 4: Contact & Dispatch */}
           <div className="lg:col-span-3">
-            <h4 className="font-display text-xs uppercase tracking-widest text-neutral-300 font-bold mb-5">
+            <h4 className="font-display text-xs uppercase tracking-[0.2em] text-neutral-300 font-semibold mb-5">
               Flight Operations
             </h4>
             <ul className="space-y-3 text-sm font-normal text-neutral-400">

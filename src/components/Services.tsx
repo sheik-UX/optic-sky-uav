@@ -49,12 +49,12 @@ export const Services: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
           <div className="inline-flex items-center gap-2 mb-3">
             <span className="w-6 h-[2px] bg-[#FFB800]" />
-            <span className="text-xs font-mono uppercase tracking-[0.25em] font-semibold text-neutral-500">
+            <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.22em] font-semibold text-neutral-500">
               SERVICES & CAPABILITIES
             </span>
             <span className="w-6 h-[2px] bg-[#FFB800]" />
           </div>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-neutral-950 leading-[1.08]">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-[32px] lg:text-[36px] font-semibold uppercase tracking-[-0.015em] text-neutral-950 leading-[1.15]">
             WHAT WE CAPTURE — AERIAL <br />
             IMAGERY WITH PURPOSE
           </h2>
@@ -77,7 +77,7 @@ export const Services: React.FC = () => {
                   </span>
                 </div>
 
-                <h3 className="font-display text-lg sm:text-xl font-bold uppercase text-neutral-900 mb-3 leading-snug">
+                <h3 className="font-display text-base sm:text-lg lg:text-[20px] font-semibold text-neutral-900 mb-3 leading-[1.3]">
                   {service.title}
                 </h3>
 

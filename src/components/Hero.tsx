@@ -66,19 +66,19 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onDiscussProject }) =
         {/* Eyebrow Label */}
         <div className="inline-flex items-center gap-2 mb-6">
           <span className="w-6 h-[1.5px] bg-[#38BDF8]" />
-          <span className="text-xs font-mono uppercase tracking-[0.25em] font-semibold text-[#38BDF8]">
+          <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.22em] font-semibold text-[#38BDF8]">
             COMMERCIAL DRONE & AERIAL CINEMATOGRAPHY
           </span>
         </div>
 
-        {/* Bold Futuristic Editorial Headline */}
-        <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold uppercase text-white tracking-[-0.02em] leading-[1.04] max-w-4xl mb-6">
+        {/* Bold Futuristic Editorial Headline: 64px Desktop, 52px Tablet, 38px Mobile */}
+        <h1 className="font-display text-4xl sm:text-5xl md:text-[52px] lg:text-[64px] font-extrabold uppercase text-white tracking-[-0.02em] leading-[1.0] max-w-4xl mb-6">
           SEE YOUR PROPERTY FROM <br className="hidden sm:block" />
           A NEW PERSPECTIVE.
         </h1>
 
-        {/* Subtitle Description */}
-        <p className="text-base sm:text-lg text-neutral-300 font-normal leading-relaxed max-w-2xl mb-10 text-balance">
+        {/* Subtitle Description: 16px mobile to 18px desktop */}
+        <p className="text-base sm:text-[17px] lg:text-[18px] text-neutral-300 font-normal leading-[1.65] max-w-2xl mb-10 text-balance">
           High-resolution aerial photography, 4K cinematic video, and precision mapping for commercial properties, championship golf courses, and infrastructure.
         </p>
 
