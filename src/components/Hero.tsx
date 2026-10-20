@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { ArrowDown, ArrowUpRight } from 'lucide-react';
+import React, { useRef, useState, useEffect } from 'react';
 
 interface HeroProps {
   onExploreWork: () => void;
@@ -7,118 +6,125 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onExploreWork, onDiscussProject }) => {
-  const heroBackgrounds = [
-    {
-      id: 'whistling',
-      title: 'Whistling Straits',
-      location: 'Sheboygan, WI',
-      category: 'Championship Golf Course',
-      src: '/assets/whistling-straits/whistling-02.jpg',
-      alt: 'Whistling Straits coastal championship golf course aerial sweep'
-    },
-    {
-      id: 'cascata',
-      title: 'Cascata Water Reclamation',
-      location: 'Boulder City, NV',
-      category: 'Civil Infrastructure',
-      src: '/assets/cascata-water-reclamation/cascata-01.jpg',
-      alt: 'Cascata Water Reclamation municipal civil infrastructure facility'
-    },
-    {
-      id: 'serket',
-      title: 'Serket Construction',
-      location: 'Las Vegas, NV',
-      category: 'Commercial Development',
-      src: '/assets/serket/serket-01.jpg',
-      alt: 'Serket architectural high-altitude development survey'
-    }
-  ];
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
-  const [activeBgIndex, setActiveBgIndex] = useState(0);
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches);
+    };
+
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      if (prefersReducedMotion) {
+        videoRef.current.pause();
+      } else {
+        const playPromise = videoRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            // Autoplay policy prevented playback; poster image remains gracefully visible
+          });
+        }
+      }
+    }
+  }, [prefersReducedMotion]);
 
   return (
-    <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden pt-32 pb-20">
-      {/* Background Imagery with Subtle Zoom */}
-      <div className="absolute inset-0 z-0">
-        {heroBackgrounds.map((bg, idx) => (
-          <div
-            key={bg.id}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-out ${
-              idx === activeBgIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-105 pointer-events-none'
+    <section className="relative min-h-[100dvh] w-full flex flex-col justify-end overflow-hidden pt-28 pb-16 sm:pb-20 lg:pb-24">
+      {/* 1. Full-Bleed Video & Poster Background */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+        {/* Poster Image (Fallback, Pre-load, and Static View for Reduced Motion) */}
+        <img
+          src="/assets/video/hero-poster.jpg"
+          alt="Optic Sky UAV Aerial Coastal Golf Course Panorama"
+          className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${
+            videoLoaded && !prefersReducedMotion ? 'opacity-0' : 'opacity-100'
+          }`}
+          loading="eager"
+        />
+
+        {/* Continuous Looping Video Element (Autoplay, Loop, Muted, PlaysInline) */}
+        {!prefersReducedMotion && (
+          <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            poster="/assets/video/hero-poster.jpg"
+            onCanPlayThrough={() => setVideoLoaded(true)}
+            onPlaying={() => setVideoLoaded(true)}
+            className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${
+              videoLoaded ? 'opacity-100' : 'opacity-0'
             }`}
           >
-            <img
-              src={bg.src}
-              alt={bg.alt}
-              className="w-full h-full object-cover object-center transform transition-transform duration-[12000ms] ease-out scale-105"
-              loading="eager"
-            />
-          </div>
-        ))}
+            <source src="/assets/video/hero-background-seamless.mp4" type="video/mp4" />
+            <source src="/assets/video/hero-background.mp4" type="video/mp4" />
+          </video>
+        )}
 
-        {/* Cinematic Vignette Overlay Matching Reference */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/60" />
-        <div className="absolute inset-0 bg-black/25" />
+        {/* 2. Carefully Balanced Cinematic Gradient Overlays */}
+        {/* Soft bottom vignette allowing full coastline & golf course visibility */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent pointer-events-none" />
+        {/* Left vignette for text legibility without darkening the center/right landscape */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent pointer-events-none" />
+        {/* Subtle global atmospheric film grade */}
+        <div className="absolute inset-0 bg-black/10 pointer-events-none" />
       </div>
 
-      {/* Main Hero Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 sm:px-8 text-center flex flex-col items-center">
-        {/* Eyebrow Label */}
-        <div className="inline-flex items-center gap-2 mb-6">
-          <span className="w-6 h-[1.5px] bg-[#38BDF8]" />
-          <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.22em] font-semibold text-[#38BDF8]">
-            COMMERCIAL DRONE & AERIAL CINEMATOGRAPHY
-          </span>
-        </div>
+      {/* 3. Bottom-Left Aligned Content Container Matching Reference */}
+      <div className="relative z-10 w-full max-w-[1360px] mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="max-w-4xl flex flex-col items-start text-left">
+          
+          {/* Eyebrow Label matching Reference Pill */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/35 backdrop-blur-md border border-white/20 mb-5 shadow-sm">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]" />
+            <span className="text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.2em] font-semibold text-neutral-200">
+              ULTRA-HIGH DEFINITION CINEMATIC UAV PRODUCTION
+            </span>
+          </div>
 
-        {/* Bold Futuristic Editorial Headline: 64px Desktop, 52px Tablet, 38px Mobile */}
-        <h1 className="font-display text-4xl sm:text-5xl md:text-[52px] lg:text-[64px] font-extrabold uppercase text-white tracking-[-0.02em] leading-[1.0] max-w-4xl mb-6">
-          SEE YOUR PROPERTY FROM <br className="hidden sm:block" />
-          A NEW PERSPECTIVE.
-        </h1>
+          {/* Bold Futuristic Editorial Headline: Exactly 2 Lines on Desktop Matching Reference */}
+          <h1 className="font-display text-3xl sm:text-4xl md:text-[44px] lg:text-[54px] xl:text-[58px] font-extrabold uppercase text-white tracking-[-0.02em] leading-[1.04] mb-5">
+            SEE YOUR PROPERTY FROM <br className="hidden sm:inline" />
+            A NEW PERSPECTIVE.
+          </h1>
 
-        {/* Subtitle Description: 16px mobile to 18px desktop */}
-        <p className="text-base sm:text-[17px] lg:text-[18px] text-neutral-300 font-normal leading-[1.65] max-w-2xl mb-10 text-balance">
-          High-resolution aerial photography, 4K cinematic video, and precision mapping for commercial properties, championship golf courses, and infrastructure.
-        </p>
+          {/* Supporting Paragraph */}
+          <p className="text-sm sm:text-base lg:text-[17px] text-neutral-200/95 font-normal leading-[1.65] max-w-2xl mb-8 text-balance">
+            Premium aerial photography and cinematic drone video for championship golf courses, luxury resorts, structural engineering milestones, and exceptional destinations worldwide.
+          </p>
 
-        {/* Dual Pill CTA Buttons Matching Reference */}
-        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-5 mb-14">
-          <button
-            type="button"
-            onClick={onDiscussProject}
-            className="inline-flex items-center gap-2 bg-[#FFB800] hover:bg-yellow-400 text-black font-bold text-xs uppercase tracking-widest px-8 py-3.5 rounded-full transition-all duration-200 shadow-lg shadow-yellow-500/25 active:scale-95"
-          >
-            <span>Get a Quote</span>
-            <ArrowUpRight size={16} className="text-black" />
-          </button>
-
-          <button
-            type="button"
-            onClick={onExploreWork}
-            className="inline-flex items-center gap-2 bg-black/40 hover:bg-black/60 backdrop-blur-md text-white border border-white/30 hover:border-white text-xs uppercase tracking-widest font-semibold px-8 py-3.5 rounded-full transition-all duration-200 active:scale-95"
-          >
-            <span>Explore Work</span>
-            <ArrowDown size={14} className="text-white/80" />
-          </button>
-        </div>
-
-        {/* Perspective Switcher Controls */}
-        <div className="inline-flex items-center gap-1.5 p-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-xs font-mono">
-          {heroBackgrounds.map((bg, idx) => (
+          {/* Two CTA Buttons Matching Reference */}
+          <div className="flex flex-wrap items-center gap-4 sm:gap-5">
+            {/* Primary Yellow Button: VIEW PORTFOLIO */}
             <button
-              key={bg.id}
               type="button"
-              onClick={() => setActiveBgIndex(idx)}
-              className={`px-3.5 py-1 rounded-full transition-all duration-300 ${
-                activeBgIndex === idx
-                  ? 'bg-white/20 text-white font-medium shadow-sm'
-                  : 'text-neutral-400 hover:text-white'
-              }`}
+              onClick={onExploreWork}
+              className="inline-flex items-center justify-center bg-[#FFB800] hover:bg-yellow-400 text-black font-bold text-xs uppercase tracking-wider px-8 py-3.5 rounded-full transition-all duration-200 shadow-lg shadow-yellow-500/20 active:scale-95 cursor-pointer"
             >
-              {bg.title}
+              <span>VIEW PORTFOLIO</span>
             </button>
-          ))}
+
+            {/* Secondary Outlined Button: BOOK MISSION */}
+            <button
+              type="button"
+              onClick={onDiscussProject}
+              className="inline-flex items-center justify-center bg-black/30 hover:bg-black/60 text-white border border-white/30 hover:border-white text-xs uppercase tracking-wider font-semibold px-8 py-3.5 rounded-full backdrop-blur-md transition-all duration-200 active:scale-95 cursor-pointer"
+            >
+              <span>BOOK MISSION</span>
+            </button>
+          </div>
+
         </div>
       </div>
     </section>
