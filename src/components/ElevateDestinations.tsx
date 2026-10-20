@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
-import { Play, Volume2, Maximize, ShieldCheck, Camera, Film } from 'lucide-react';
+import { Camera, Film, ShieldCheck } from 'lucide-react';
 
 interface ElevateDestinationsProps {
   onPlayVideo?: () => void;
@@ -13,20 +13,18 @@ function getFrameUrl(index: number): string {
   return `${FRAME_PREFIX}${frameNum}.jpg`;
 }
 
-export const ElevateDestinations: React.FC<ElevateDestinationsProps> = ({ onPlayVideo }) => {
+export const ElevateDestinations: React.FC<ElevateDestinationsProps> = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
-  const playerBarRef = useRef<HTMLDivElement>(null);
-  const playButtonRef = useRef<HTMLDivElement>(null);
 
   const imagesRef = useRef<(HTMLImageElement | null)[]>(new Array(TOTAL_FRAMES).fill(null));
   const currentFrameRef = useRef(0);
 
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
-  // Check reduced motion
+  // Check reduced motion preference
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
     setPrefersReducedMotion(mq.matches);
@@ -35,14 +33,14 @@ export const ElevateDestinations: React.FC<ElevateDestinationsProps> = ({ onPlay
     return () => mq.removeEventListener('change', onChange);
   }, []);
 
-  // Draw frame to canvas with object-fit: cover logic
+  // Draw frame to canvas with high-quality object-fit: cover scaling
   const drawFrame = useCallback((frameIdx: number) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Find requested frame or nearest loaded frame
+    // Find requested frame or nearest loaded frame to eliminate any blank flashes
     let img = imagesRef.current[frameIdx];
     if (!img || !img.complete || img.naturalWidth === 0) {
       for (let offset = 1; offset < TOTAL_FRAMES; offset++) {
@@ -82,11 +80,12 @@ export const ElevateDestinations: React.FC<ElevateDestinationsProps> = ({ onPlay
       offsetX = (cw - renderW) / 2;
     }
 
-    ctx.clearRect(0, 0, cw, ch);
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
     ctx.drawImage(img, offsetX, offsetY, renderW, renderH);
   }, []);
 
-  // Canvas resize handler maintaining device pixel ratio
+  // Canvas resize handler matching device pixel ratio (capped at 2 for performance)
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -100,6 +99,11 @@ export const ElevateDestinations: React.FC<ElevateDestinationsProps> = ({ onPlay
         if (canvas.width !== newW || canvas.height !== newH) {
           canvas.width = newW;
           canvas.height = newH;
+          const ctx = canvas.getContext('2d');
+          if (ctx) {
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+          }
           drawFrame(currentFrameRef.current);
         }
       }
@@ -121,19 +125,21 @@ export const ElevateDestinations: React.FC<ElevateDestinationsProps> = ({ onPlay
     frame0.onload = () => {
       if (isCancelled) return;
       imagesRef.current[0] = frame0;
-      drawFrame(0);
+      if (currentFrameRef.current === 0) {
+        drawFrame(0);
+      }
     };
 
-    // 2. Load keyframes (stride of 6) to span the whole animation in <500ms
+    // 2. Load keyframes (stride of 5) to span the whole animation in <300ms
     const keyframeIndices: number[] = [];
-    for (let i = 0; i < TOTAL_FRAMES; i += 6) {
+    for (let i = 0; i < TOTAL_FRAMES; i += 5) {
       if (i !== 0) keyframeIndices.push(i);
     }
     if (!keyframeIndices.includes(TOTAL_FRAMES - 1)) {
       keyframeIndices.push(TOTAL_FRAMES - 1);
     }
 
-    const loadBatch = async (indices: number[], concurrency = 6) => {
+    const loadBatch = async (indices: number[], concurrency = 8) => {
       let idx = 0;
       const loadNext = (): Promise<void> => {
         if (idx >= indices.length || isCancelled) return Promise.resolve();
@@ -159,7 +165,7 @@ export const ElevateDestinations: React.FC<ElevateDestinationsProps> = ({ onPlay
     };
 
     (async () => {
-      await loadBatch(keyframeIndices, 6);
+      await loadBatch(keyframeIndices, 8);
       if (isCancelled) return;
 
       // 3. Fill in all remaining interstitial frames
@@ -167,7 +173,7 @@ export const ElevateDestinations: React.FC<ElevateDestinationsProps> = ({ onPlay
       for (let i = 0; i < TOTAL_FRAMES; i++) {
         if (!imagesRef.current[i]) remaining.push(i);
       }
-      await loadBatch(remaining, 6);
+      await loadBatch(remaining, 8);
     })();
 
     return () => {
@@ -175,7 +181,7 @@ export const ElevateDestinations: React.FC<ElevateDestinationsProps> = ({ onPlay
     };
   }, [drawFrame]);
 
-  // Scroll synchronization engine using GSAP ScrollTrigger & native scroll fallback
+  // Scroll synchronization engine: Full Section Cinematic Choreography
   useEffect(() => {
     if (prefersReducedMotion) return;
 
@@ -184,8 +190,9 @@ export const ElevateDestinations: React.FC<ElevateDestinationsProps> = ({ onPlay
 
     const updateProgress = (p: number) => {
       // 1. Frame Scrubbing (0 to 299)
-      // Frames advance from p = 0.0 to p = 0.94, resting at frame 299 for final state
-      const frameP = Math.min(1, Math.max(0, p / 0.94));
+      // Frames progress continuously from p = 0.00 to p = 0.96
+      // Holds frame 299 for p in [0.96, 1.00] as cards finish fading out
+      const frameP = Math.min(1, Math.max(0, p / 0.96));
       const frameIdx = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.floor(frameP * (TOTAL_FRAMES - 1))));
 
       if (frameIdx !== currentFrameRef.current) {
@@ -193,48 +200,72 @@ export const ElevateDestinations: React.FC<ElevateDestinationsProps> = ({ onPlay
         drawFrame(frameIdx);
       }
 
-      // 2. Animate Header Row (State A -> State B)
-      // Fully visible at p = 0.0, smoothly fades out by p = 0.16
+      // 2. Phase 1 & 2: Heading Animation
+      // - p in [0.00, 0.05]: Smooth fade-in (opacity 0 -> 1, translateY 20px -> 0px)
+      // - p in [0.05, 0.26]: Fully visible as drone approaches house (frames 15–78)
+      // - p in [0.26, 0.38]: Smooth fade-out (opacity 1 -> 0, translateY 0px -> -25px) as drone enters doorway
+      // - p >= 0.38: Completely hidden during interior hallway & chandelier sequence
       if (headerRef.current) {
-        const headerFadeEnd = 0.16;
-        const headerP = Math.min(1, Math.max(0, p / headerFadeEnd));
-        const headerOpacity = Math.max(0, 1 - headerP);
-        const headerTranslateY = -headerP * 35;
+        let headerOpacity = 0;
+        let headerTranslateY = 0;
+
+        if (p <= 0.05) {
+          const fadeInP = Math.max(0, p / 0.05);
+          headerOpacity = fadeInP;
+          headerTranslateY = (1 - fadeInP) * 20;
+        } else if (p <= 0.26) {
+          headerOpacity = 1;
+          headerTranslateY = 0;
+        } else if (p <= 0.38) {
+          const fadeOutP = (p - 0.26) / (0.38 - 0.26);
+          headerOpacity = Math.max(0, 1 - fadeOutP);
+          headerTranslateY = -fadeOutP * 25;
+        } else {
+          headerOpacity = 0;
+          headerTranslateY = -25;
+        }
+
         headerRef.current.style.opacity = String(headerOpacity);
         headerRef.current.style.transform = `translateY(${headerTranslateY}px)`;
-        headerRef.current.style.pointerEvents = headerOpacity > 0.1 ? 'auto' : 'none';
+        headerRef.current.style.pointerEvents = headerOpacity > 0.05 ? 'auto' : 'none';
       }
 
-      // 3. Animate Play Button & Video Player Bar Overlay
-      // Fades out promptly upon scrolling (by p = 0.08)
-      const overlayFadeEnd = 0.08;
-      const overlayP = Math.min(1, Math.max(0, p / overlayFadeEnd));
-      const overlayOpacity = Math.max(0, 1 - overlayP);
-
-      if (playButtonRef.current) {
-        playButtonRef.current.style.opacity = String(overlayOpacity);
-        playButtonRef.current.style.pointerEvents = overlayOpacity > 0.1 ? 'auto' : 'none';
-      }
-      if (playerBarRef.current) {
-        playerBarRef.current.style.opacity = String(overlayOpacity);
-        playerBarRef.current.style.pointerEvents = overlayOpacity > 0.1 ? 'auto' : 'none';
-      }
-
-      // 4. Animate 3 Feature Cards (State B -> State C)
-      // Hidden until p = 0.70, smoothly slides up into resting position by p = 0.94
+      // 3. Phase 3 & 4: 3 Feature Cards Animation
+      // - p < 0.70: Completely hidden during interior flight
+      // - p in [0.70, 0.80]: Smooth slide-up & fade-in (opacity 0 -> 1, translateY 40px -> 0px) as drone bursts onto the golf course (frames 215–245)
+      // - p in [0.80, 0.90]: Resting in place, fully readable across the lower third of panoramic golf course
+      // - p in [0.90, 0.97]: Smooth fade-out & slide-away before section completes
+      // - p in [0.97, 1.00]: Completely hidden (opacity 0), clean release into Selected Work section
       if (cardsRef.current) {
-        const cardsStart = 0.70;
-        const cardsEnd = 0.94;
-        const cardP = Math.min(1, Math.max(0, (p - cardsStart) / (cardsEnd - cardsStart)));
-        const cardOpacity = cardP;
-        const cardTranslateY = (1 - cardP) * 70;
+        let cardOpacity = 0;
+        let cardTranslateY = 0;
+
+        if (p < 0.70) {
+          cardOpacity = 0;
+          cardTranslateY = 40;
+        } else if (p <= 0.80) {
+          const fadeInP = (p - 0.70) / (0.80 - 0.70);
+          cardOpacity = fadeInP;
+          cardTranslateY = (1 - fadeInP) * 40;
+        } else if (p <= 0.90) {
+          cardOpacity = 1;
+          cardTranslateY = 0;
+        } else if (p <= 0.97) {
+          const fadeOutP = (p - 0.90) / (0.97 - 0.90);
+          cardOpacity = Math.max(0, 1 - fadeOutP);
+          cardTranslateY = -fadeOutP * 20;
+        } else {
+          cardOpacity = 0;
+          cardTranslateY = -20;
+        }
+
         cardsRef.current.style.opacity = String(cardOpacity);
         cardsRef.current.style.transform = `translateY(${cardTranslateY}px)`;
-        cardsRef.current.style.pointerEvents = cardP > 0.7 ? 'auto' : 'none';
+        cardsRef.current.style.pointerEvents = cardOpacity > 0.1 ? 'auto' : 'none';
       }
     };
 
-    // Calculate progress directly from bounding rect
+    // Calculate progress directly from bounding client rect
     const calculateProgress = () => {
       const rect = section.getBoundingClientRect();
       const scrollableDistance = section.offsetHeight - window.innerHeight;
@@ -243,9 +274,14 @@ export const ElevateDestinations: React.FC<ElevateDestinationsProps> = ({ onPlay
       return Math.min(1, Math.max(0, rawProgress));
     };
 
+    let rafId: number | null = null;
     const handleScroll = () => {
-      const p = calculateProgress();
-      updateProgress(p);
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        const p = calculateProgress();
+        updateProgress(p);
+      });
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -253,37 +289,31 @@ export const ElevateDestinations: React.FC<ElevateDestinationsProps> = ({ onPlay
     handleScroll();
 
     return () => {
+      if (rafId !== null) cancelAnimationFrame(rafId);
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleScroll);
     };
   }, [drawFrame, prefersReducedMotion]);
 
-  // Reduced motion static fallback
+  // Reduced motion static fallback: clean editorial showcase
   if (prefersReducedMotion) {
     return (
-      <section className="py-24 sm:py-32 bg-white text-neutral-900 border-b border-neutral-200">
-        <div className="max-w-[1280px] mx-auto px-6 sm:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-end mb-16">
-            <div className="lg:col-span-7">
-              <div className="inline-flex items-center gap-2 mb-4">
-                <span className="w-6 h-[2px] bg-[#FFB800]" />
-                <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.22em] font-semibold text-neutral-500">
-                  AERIAL VISUALIZATION & CAPTURE
-                </span>
-              </div>
-              <h2 className="font-display text-2xl sm:text-3xl md:text-[32px] lg:text-[36px] font-semibold uppercase tracking-[-0.015em] text-neutral-950 leading-[1.15]">
-                AERIAL PERSPECTIVES THAT <br />
-                ELEVATE DESTINATIONS
-              </h2>
+      <section className="py-24 sm:py-32 bg-[#0a0a0a] text-neutral-100 border-b border-neutral-800">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8">
+          <div className="mb-12">
+            <div className="inline-flex items-center gap-2 mb-3">
+              <span className="w-6 h-[2px] bg-[#FFB800]" />
+              <span className="text-xs font-mono uppercase tracking-[0.22em] font-semibold text-neutral-400">
+                AERIAL VISUALIZATION & CAPTURE
+              </span>
             </div>
-            <div className="lg:col-span-5">
-              <p className="text-base sm:text-[17px] lg:text-[18px] text-neutral-600 leading-[1.65] font-normal">
-                From championship fairways to landmark commercial architecture, our ultra-high-definition aerial cinematography captures the true scale, contours, and character that ground-level photography cannot convey.
-              </p>
-            </div>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold uppercase tracking-tight text-white leading-[1.1]">
+              AERIAL PERSPECTIVES THAT <br />
+              ELEVATE DESTINATIONS
+            </h2>
           </div>
 
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-neutral-900 mb-14 aspect-video">
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-neutral-900 mb-14 aspect-video border border-neutral-800">
             <img
               src={getFrameUrl(299)}
               alt="Optic Sky UAV Aerial Championship Golf Course Showcase"
@@ -293,11 +323,11 @@ export const ElevateDestinations: React.FC<ElevateDestinationsProps> = ({ onPlay
 
           {/* 3 Feature Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            <div className="bg-neutral-50 border border-neutral-200/90 rounded-2xl p-7 sm:p-8 flex flex-col justify-between">
+            <div className="bg-white text-neutral-900 border border-white/60 rounded-2xl p-7 sm:p-8 flex flex-col justify-between shadow-2xl">
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <span className="font-mono text-xs font-bold text-neutral-400 tracking-widest">01</span>
-                  <Camera size={18} className="text-neutral-700" />
+                  <Camera size={20} className="text-neutral-800" />
                 </div>
                 <h3 className="font-display text-lg sm:text-xl lg:text-[22px] font-semibold text-neutral-900 mb-2 leading-[1.25]">
                   Course & Turf Fidelity
@@ -306,16 +336,16 @@ export const ElevateDestinations: React.FC<ElevateDestinationsProps> = ({ onPlay
                   48MP high-dynamic-range aerial still photography capturing green contours, architectural boundaries, and landscape details.
                 </p>
               </div>
-              <div className="mt-6 pt-4 border-t border-neutral-200 text-xs font-mono text-neutral-500">
+              <div className="mt-6 pt-4 border-t border-neutral-200 text-xs font-mono text-neutral-500 font-medium">
                 SENSOR: 48MP HDR // 8064 × 6048
               </div>
             </div>
 
-            <div className="bg-neutral-50 border border-neutral-200/90 rounded-2xl p-7 sm:p-8 flex flex-col justify-between">
+            <div className="bg-white text-neutral-900 border border-white/60 rounded-2xl p-7 sm:p-8 flex flex-col justify-between shadow-2xl">
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <span className="font-mono text-xs font-bold text-neutral-400 tracking-widest">02</span>
-                  <Film size={18} className="text-neutral-700" />
+                  <Film size={20} className="text-neutral-800" />
                 </div>
                 <h3 className="font-display text-lg sm:text-xl lg:text-[22px] font-semibold text-neutral-900 mb-2 leading-[1.25]">
                   Cinematic Trajectories
@@ -324,18 +354,18 @@ export const ElevateDestinations: React.FC<ElevateDestinationsProps> = ({ onPlay
                   Fluid orbital reveals, low-altitude sweeps, and custom trajectory flights pre-planned around optimal sun azimuths.
                 </p>
               </div>
-              <div className="mt-6 pt-4 border-t border-neutral-200 text-xs font-mono text-neutral-500">
+              <div className="mt-6 pt-4 border-t border-neutral-200 text-xs font-mono text-neutral-500 font-medium">
                 CINEMA: 4K 60FPS // 10-BIT D-LOG
               </div>
             </div>
 
-            <div className="bg-[#11120e] text-[#f4f3e8] border border-neutral-800 rounded-2xl p-7 sm:p-8 flex flex-col justify-between shadow-xl">
+            <div className="bg-[#11120e] text-[#f4f3e8] border border-neutral-800 rounded-2xl p-7 sm:p-8 flex flex-col justify-between shadow-2xl">
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <span className="px-2.5 py-1 rounded-full bg-[#FFB800]/15 text-[#FFB800] border border-[#FFB800]/30 font-mono text-[10px] tracking-widest uppercase font-semibold">
                     FAA PART 107 CERTIFIED
                   </span>
-                  <ShieldCheck size={20} className="text-[#FFB800]" />
+                  <ShieldCheck size={22} className="text-[#FFB800]" />
                 </div>
                 <h3 className="font-display text-lg sm:text-xl lg:text-[22px] font-semibold text-white mb-2 leading-[1.25]">
                   Operational Compliance
@@ -344,7 +374,7 @@ export const ElevateDestinations: React.FC<ElevateDestinationsProps> = ({ onPlay
                   Fully licensed commercial UAV pilots with instant LAANC automated airspace authorization and $5,000,000 commercial liability coverage.
                 </p>
               </div>
-              <div className="mt-6 pt-4 border-t border-neutral-800 text-xs font-mono text-[#FFB800] flex items-center justify-between">
+              <div className="mt-6 pt-4 border-t border-neutral-800 text-xs font-mono text-[#FFB800] flex items-center justify-between font-medium">
                 <span>AIRSPACE READY // NATIONWIDE</span>
                 <span className="w-1.5 h-1.5 rounded-full bg-[#FFB800]" />
               </div>
@@ -358,169 +388,113 @@ export const ElevateDestinations: React.FC<ElevateDestinationsProps> = ({ onPlay
   return (
     <section
       ref={sectionRef}
-      className="relative bg-white text-neutral-900 border-b border-neutral-200"
-      style={{ height: '320vh' }}
+      id="destinations"
+      className="relative w-full bg-black text-white selection:bg-[#FFB800] selection:text-black"
+      style={{ height: '450vh' }}
     >
-      {/* Sticky Stage Container: Exactly 100vh with Clean Framing & Navbar Clearance */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between pt-24 sm:pt-28 pb-6 sm:pb-8">
-        <div className="w-full max-w-[1280px] mx-auto px-6 sm:px-8 flex-1 flex flex-col justify-between">
-          
-          {/* State A: Top Header Row (Transitions smoothly out of view during scroll) */}
-          <div
-            ref={headerRef}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-16 items-end mb-3 sm:mb-4 transition-transform duration-75 will-change-transform shrink-0"
-          >
-            <div className="lg:col-span-7">
-              <div className="inline-flex items-center gap-2 mb-2 sm:mb-2.5">
-                <span className="w-6 h-[2px] bg-[#FFB800]" />
-                <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.22em] font-semibold text-neutral-500">
-                  AERIAL VISUALIZATION & CAPTURE
-                </span>
-              </div>
-              <h2 className="font-display text-2xl sm:text-3xl md:text-[32px] lg:text-[36px] font-semibold uppercase tracking-[-0.015em] text-neutral-950 leading-[1.15]">
-                AERIAL PERSPECTIVES THAT <br className="hidden sm:inline" />
-                ELEVATE DESTINATIONS
-              </h2>
-            </div>
+      {/* Sticky Stage Container: Exactly 100svh full-bleed cinematic viewport */}
+      <div className="sticky top-0 h-screen h-[100svh] w-full overflow-hidden">
+        {/* Full-Bleed Hardware-Accelerated High-Fidelity Canvas */}
+        <canvas
+          ref={canvasRef}
+          className="absolute inset-0 w-full h-full block"
+          style={{ imageRendering: 'auto' }}
+        />
 
-            <div className="lg:col-span-5">
-              <p className="text-sm sm:text-base lg:text-[17px] text-neutral-600 leading-[1.6] font-normal">
-                From championship fairways to landmark commercial architecture, our ultra-high-definition aerial cinematography captures the true scale, contours, and character that ground-level photography cannot convey.
-              </p>
-            </div>
+        {/* Ambient Depth Scrim Gradients for Visual Contrast & Cinematic Framing */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-black/50 pointer-events-none" />
+
+        {/* Phase 1 & 2: Top Heading Overlay (Exterior approach to house; fades out before interior) */}
+        <div
+          ref={headerRef}
+          data-testid="section-header"
+          className="absolute top-20 sm:top-24 md:top-28 left-0 right-0 px-6 sm:px-10 max-w-7xl mx-auto pointer-events-none will-change-transform z-10 transition-transform duration-75"
+          style={{ opacity: 0, transform: 'translateY(20px)' }}
+        >
+          <div className="inline-flex items-center gap-2 mb-2 sm:mb-3">
+            <span className="w-6 h-[2px] bg-[#FFB800]" />
+            <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.22em] font-semibold text-neutral-300 drop-shadow">
+              AERIAL VISUALIZATION & CAPTURE
+            </span>
           </div>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold uppercase tracking-tight text-white leading-[1.08] drop-shadow-2xl">
+            AERIAL PERSPECTIVES THAT <br className="hidden sm:inline" />
+            ELEVATE DESTINATIONS
+          </h2>
+        </div>
 
-          {/* State B: Cinematic Image Sequence Canvas Showcase */}
-          <div className="relative flex-1 min-h-[200px] max-h-[380px] sm:max-h-[420px] lg:max-h-[440px] w-full rounded-2xl overflow-hidden shadow-2xl bg-neutral-950 my-1 sm:my-2 group">
-            <canvas
-              ref={canvasRef}
-              className="w-full h-full object-cover block"
-            />
-
-            {/* Subtle Vignette Gradient for Depth */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/15 pointer-events-none" />
-
-            {/* Initial Centered Play Button (Visible in State A, fades out on scroll) */}
-            <div
-              ref={playButtonRef}
-              className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 pointer-events-auto"
-            >
-              <button
-                type="button"
-                onClick={onPlayVideo}
-                className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/90 hover:bg-[#FFB800] text-black flex items-center justify-center shadow-2xl backdrop-blur-md transform transition-all duration-300 hover:scale-110 active:scale-95 group/btn cursor-pointer"
-                aria-label="Play featured cinematography reel"
-              >
-                <Play size={28} className="ml-1 text-black fill-black transition-transform group-hover/btn:scale-110" />
-              </button>
-            </div>
-
-            {/* Media Player Control Bar Overlay (Visible in State A, fades out on scroll) */}
-            <div
-              ref={playerBarRef}
-              className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 bg-gradient-to-t from-black via-black/80 to-transparent transition-opacity duration-300"
-            >
-              <div className="max-w-4xl mx-auto flex items-center justify-between gap-4 text-white">
-                <div className="flex items-center gap-3">
-                  <button
-                    type="button"
-                    onClick={onPlayVideo}
-                    className="p-1.5 rounded-full bg-white/20 hover:bg-white/40 text-white transition-colors cursor-pointer"
-                  >
-                    <Play size={14} className="fill-white" />
-                  </button>
-                  <span className="font-mono text-xs tracking-wider text-neutral-300">
-                    01:24 / 04:15
-                  </span>
-                </div>
-
-                {/* Progress Bar Line */}
-                <div className="flex-1 mx-4 h-1.5 bg-white/20 rounded-full overflow-hidden relative">
-                  <div className="h-full bg-[#FFB800] w-1/3 rounded-full" />
-                </div>
-
-                <div className="flex items-center gap-4 text-xs font-mono text-neutral-300">
-                  <span className="px-2 py-0.5 rounded bg-white/10 text-[10px] tracking-widest text-[#FFB800] border border-white/10">
-                    4K 60FPS HDR
-                  </span>
-                  <Volume2 size={15} className="cursor-pointer hover:text-white" />
-                  <Maximize size={15} className="cursor-pointer hover:text-white" onClick={onPlayVideo} />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* State C: 3 Feature Cards (Slides up smoothly into view near end of sequence) */}
-          <div
-            ref={cardsRef}
-            className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-5 lg:gap-6 mt-1 sm:mt-2 shrink-0 transition-transform duration-75 will-change-transform"
-            style={{ opacity: 0, transform: 'translateY(70px)', pointerEvents: 'none' }}
-          >
-            {/* Card 1 — Light */}
-            <div className="bg-neutral-50 border border-neutral-200/90 rounded-2xl p-4 sm:p-5 lg:p-6 flex flex-col justify-between hover:border-neutral-400 transition-all shadow-sm">
+        {/* Phase 3 & 4: 3 Feature Cards (Revealed as drone bursts onto the golf course; fades out before release) */}
+        <div
+          ref={cardsRef}
+          data-testid="feature-cards"
+          className="absolute bottom-5 sm:bottom-8 md:bottom-12 left-0 right-0 px-4 sm:px-8 md:px-10 max-w-7xl mx-auto z-10 will-change-transform transition-transform duration-75"
+          style={{ opacity: 0, transform: 'translateY(40px)', pointerEvents: 'none' }}
+        >
+          <div className="flex md:grid md:grid-cols-3 gap-3.5 sm:gap-6 lg:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory no-scrollbar pb-1 px-1">
+            {/* Card 1 — Course & Turf Fidelity (Light Editorial Card) */}
+            <div className="w-[84vw] sm:w-[360px] md:w-auto shrink-0 snap-center bg-white/95 backdrop-blur-md border border-white/60 rounded-2xl p-4 sm:p-6 lg:p-7 flex flex-col justify-between shadow-2xl transition-all duration-300 hover:bg-white hover:border-neutral-300">
               <div>
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center justify-between mb-2.5 sm:mb-4">
                   <span className="font-mono text-xs font-bold text-neutral-400 tracking-widest">
                     01
                   </span>
-                  <Camera size={18} className="text-neutral-700" />
+                  <Camera size={18} className="text-neutral-800" />
                 </div>
-                <h3 className="font-display text-base sm:text-[17px] lg:text-[19px] font-semibold text-neutral-900 mb-1.5 leading-[1.25]">
+                <h3 className="font-display text-base sm:text-xl lg:text-[22px] font-semibold text-neutral-900 mb-1.5 sm:mb-2 leading-[1.2]">
                   Course & Turf Fidelity
                 </h3>
-                <p className="text-xs sm:text-[13px] text-neutral-600 leading-relaxed font-normal">
+                <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-normal">
                   48MP high-dynamic-range aerial still photography capturing green contours, architectural boundaries, and landscape details.
                 </p>
               </div>
-              <div className="mt-3 pt-2.5 border-t border-neutral-200 text-[10px] sm:text-[11px] font-mono text-neutral-500">
+              <div className="mt-4 sm:mt-5 pt-3 sm:pt-3.5 border-t border-neutral-200 text-[10px] sm:text-xs font-mono text-neutral-500 font-medium">
                 SENSOR: 48MP HDR // 8064 × 6048
               </div>
             </div>
 
-            {/* Card 2 — Light */}
-            <div className="bg-neutral-50 border border-neutral-200/90 rounded-2xl p-4 sm:p-5 lg:p-6 flex flex-col justify-between hover:border-neutral-400 transition-all shadow-sm">
+            {/* Card 2 — Cinematic Trajectories (Light Editorial Card) */}
+            <div className="w-[84vw] sm:w-[360px] md:w-auto shrink-0 snap-center bg-white/95 backdrop-blur-md border border-white/60 rounded-2xl p-4 sm:p-6 lg:p-7 flex flex-col justify-between shadow-2xl transition-all duration-300 hover:bg-white hover:border-neutral-300">
               <div>
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center justify-between mb-2.5 sm:mb-4">
                   <span className="font-mono text-xs font-bold text-neutral-400 tracking-widest">
                     02
                   </span>
-                  <Film size={18} className="text-neutral-700" />
+                  <Film size={18} className="text-neutral-800" />
                 </div>
-                <h3 className="font-display text-base sm:text-[17px] lg:text-[19px] font-semibold text-neutral-900 mb-1.5 leading-[1.25]">
+                <h3 className="font-display text-base sm:text-xl lg:text-[22px] font-semibold text-neutral-900 mb-1.5 sm:mb-2 leading-[1.2]">
                   Cinematic Trajectories
                 </h3>
-                <p className="text-xs sm:text-[13px] text-neutral-600 leading-relaxed font-normal">
+                <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-normal">
                   Fluid orbital reveals, low-altitude sweeps, and custom trajectory flights pre-planned around optimal sun azimuths.
                 </p>
               </div>
-              <div className="mt-3 pt-2.5 border-t border-neutral-200 text-[10px] sm:text-[11px] font-mono text-neutral-500">
+              <div className="mt-4 sm:mt-5 pt-3 sm:pt-3.5 border-t border-neutral-200 text-[10px] sm:text-xs font-mono text-neutral-500 font-medium">
                 CINEMA: 4K 60FPS // 10-BIT D-LOG
               </div>
             </div>
 
-            {/* Card 3 — Dark Black Feature Card Matching Reference */}
-            <div className="bg-[#11120e] text-[#f4f3e8] border border-neutral-800 rounded-2xl p-4 sm:p-5 lg:p-6 flex flex-col justify-between shadow-xl">
+            {/* Card 3 — Operational Compliance (Dark Signature Card with Gold Accents) */}
+            <div className="w-[84vw] sm:w-[360px] md:w-auto shrink-0 snap-center bg-[#11120e]/95 backdrop-blur-md border border-neutral-700/80 rounded-2xl p-4 sm:p-6 lg:p-7 flex flex-col justify-between shadow-2xl text-[#f4f3e8] transition-all duration-300 hover:border-[#FFB800]/50">
               <div>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="px-2 py-0.5 rounded-full bg-[#FFB800]/15 text-[#FFB800] border border-[#FFB800]/30 font-mono text-[9px] sm:text-[10px] tracking-widest uppercase font-semibold">
+                <div className="flex items-center justify-between mb-2.5 sm:mb-4">
+                  <span className="px-2.5 py-0.5 sm:py-1 rounded-full bg-[#FFB800]/15 text-[#FFB800] border border-[#FFB800]/30 font-mono text-[9px] sm:text-[11px] tracking-widest uppercase font-semibold">
                     FAA PART 107 CERTIFIED
                   </span>
-                  <ShieldCheck size={18} className="text-[#FFB800]" />
+                  <ShieldCheck size={20} className="text-[#FFB800]" />
                 </div>
-                <h3 className="font-display text-base sm:text-[17px] lg:text-[19px] font-semibold text-white mb-1.5 leading-[1.25]">
+                <h3 className="font-display text-base sm:text-xl lg:text-[22px] font-semibold text-white mb-1.5 sm:mb-2 leading-[1.2]">
                   Operational Compliance
                 </h3>
-                <p className="text-xs sm:text-[13px] text-neutral-300 leading-relaxed font-normal">
+                <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed font-normal">
                   Fully licensed commercial UAV pilots with instant LAANC automated airspace authorization and $5,000,000 commercial liability coverage.
                 </p>
               </div>
-              <div className="mt-3 pt-2.5 border-t border-neutral-800 text-[10px] sm:text-[11px] font-mono text-[#FFB800] flex items-center justify-between">
+              <div className="mt-4 sm:mt-5 pt-3 sm:pt-3.5 border-t border-neutral-800 text-[10px] sm:text-xs font-mono text-[#FFB800] flex items-center justify-between font-medium">
                 <span>AIRSPACE READY // NATIONWIDE</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#FFB800]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FFB800] animate-pulse" />
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
