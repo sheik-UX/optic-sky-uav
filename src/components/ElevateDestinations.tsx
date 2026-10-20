@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import { Camera, Film, ShieldCheck } from 'lucide-react';
 
 interface ElevateDestinationsProps {
@@ -21,17 +21,6 @@ export const ElevateDestinations: React.FC<ElevateDestinationsProps> = () => {
 
   const imagesRef = useRef<(HTMLImageElement | null)[]>(new Array(TOTAL_FRAMES).fill(null));
   const currentFrameRef = useRef(0);
-
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-
-  // Check reduced motion preference
-  useEffect(() => {
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setPrefersReducedMotion(mq.matches);
-    const onChange = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
-    mq.addEventListener('change', onChange);
-    return () => mq.removeEventListener('change', onChange);
-  }, []);
 
   // Draw frame to canvas with high-quality object-fit: cover scaling
   const drawFrame = useCallback((frameIdx: number) => {
@@ -119,7 +108,7 @@ export const ElevateDestinations: React.FC<ElevateDestinationsProps> = () => {
   useEffect(() => {
     let isCancelled = false;
 
-    // 1. Immediately load frame 0 for zero-delay initial view
+    // 1. Immediately load frame 0 for instant initial view
     const frame0 = new Image();
     frame0.src = getFrameUrl(0);
     frame0.onload = () => {
@@ -130,7 +119,7 @@ export const ElevateDestinations: React.FC<ElevateDestinationsProps> = () => {
       }
     };
 
-    // 2. Load keyframes (stride of 5) to span the whole animation in <300ms
+    // 2. Load keyframes (stride of 5) across the sequence
     const keyframeIndices: number[] = [];
     for (let i = 0; i < TOTAL_FRAMES; i += 5) {
       if (i !== 0) keyframeIndices.push(i);
@@ -181,209 +170,117 @@ export const ElevateDestinations: React.FC<ElevateDestinationsProps> = () => {
     };
   }, [drawFrame]);
 
-  // Scroll synchronization engine: Full Section Cinematic Choreography
+  // Synchronous Scroll Engine: continuous RAF loop synchronized with both Lenis and native scroll
+  const updateProgress = useCallback((p: number) => {
+    // 1. Frame Scrubbing (0 to 299)
+    // Frames progress from p = 0.00 to p = 0.96; holds frame 299 for p in [0.96, 1.00]
+    const frameP = Math.min(1, Math.max(0, p / 0.96));
+    const frameIdx = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.floor(frameP * (TOTAL_FRAMES - 1))));
+
+    if (frameIdx !== currentFrameRef.current) {
+      currentFrameRef.current = frameIdx;
+      drawFrame(frameIdx);
+    }
+
+    // 2. Phase 1 & 2: Heading Animation
+    // - p in [0.00, 0.08]: Smooth fade-in (opacity 0 -> 1, translateY 20px -> 0px)
+    // - p in [0.08, 0.28]: Fully visible as drone approaches house
+    // - p in [0.28, 0.40]: Smooth fade-out (opacity 1 -> 0, translateY 0px -> -25px) as drone enters doorway
+    // - p >= 0.40: Completely hidden during interior hallway & chandelier sequence
+    if (headerRef.current) {
+      let headerOpacity = 0;
+      let headerTranslateY = 0;
+
+      if (p <= 0.08) {
+        const fadeInP = Math.max(0, p / 0.08);
+        headerOpacity = fadeInP;
+        headerTranslateY = (1 - fadeInP) * 20;
+      } else if (p <= 0.28) {
+        headerOpacity = 1;
+        headerTranslateY = 0;
+      } else if (p <= 0.40) {
+        const fadeOutP = (p - 0.28) / (0.40 - 0.28);
+        headerOpacity = Math.max(0, 1 - fadeOutP);
+        headerTranslateY = -fadeOutP * 25;
+      } else {
+        headerOpacity = 0;
+        headerTranslateY = -25;
+      }
+
+      headerRef.current.style.opacity = String(headerOpacity);
+      headerRef.current.style.transform = `translateY(${headerTranslateY}px)`;
+      headerRef.current.style.pointerEvents = headerOpacity > 0.05 ? 'auto' : 'none';
+    }
+
+    // 3. Phase 3 & 4: 3 Feature Cards Animation
+    // - p < 0.70: Completely hidden during interior flight
+    // - p in [0.70, 0.80]: Smooth slide-up & fade-in (opacity 0 -> 1, translateY 40px -> 0px) as drone emerges onto golf course
+    // - p in [0.80, 0.90]: Resting in place, fully readable across the lower portion of panoramic golf course
+    // - p in [0.90, 0.97]: Smooth fade-out & slide-down (opacity 1 -> 0, translateY 0px -> 20px) before release
+    // - p in [0.97, 1.00]: Completely hidden (opacity 0), clean release into Selected Work section
+    if (cardsRef.current) {
+      let cardOpacity = 0;
+      let cardTranslateY = 0;
+
+      if (p < 0.70) {
+        cardOpacity = 0;
+        cardTranslateY = 40;
+      } else if (p <= 0.80) {
+        const fadeInP = (p - 0.70) / (0.80 - 0.70);
+        cardOpacity = fadeInP;
+        cardTranslateY = (1 - fadeInP) * 40;
+      } else if (p <= 0.90) {
+        cardOpacity = 1;
+        cardTranslateY = 0;
+      } else if (p <= 0.97) {
+        const fadeOutP = (p - 0.90) / (0.97 - 0.90);
+        cardOpacity = Math.max(0, 1 - fadeOutP);
+        cardTranslateY = fadeOutP * 20;
+      } else {
+        cardOpacity = 0;
+        cardTranslateY = 20;
+      }
+
+      cardsRef.current.style.opacity = String(cardOpacity);
+      cardsRef.current.style.transform = `translateY(${cardTranslateY}px)`;
+      cardsRef.current.style.pointerEvents = cardOpacity > 0.1 ? 'auto' : 'none';
+    }
+  }, [drawFrame]);
+
+  // High-performance RAF animation loop ensuring real-time scroll sync with Lenis
   useEffect(() => {
-    if (prefersReducedMotion) return;
+    let isRunning = true;
+    let lastProgress = -1;
 
-    const section = sectionRef.current;
-    if (!section) return;
+    const checkScroll = () => {
+      if (!isRunning) return;
 
-    const updateProgress = (p: number) => {
-      // 1. Frame Scrubbing (0 to 299)
-      // Frames progress continuously from p = 0.00 to p = 0.96
-      // Holds frame 299 for p in [0.96, 1.00] as cards finish fading out
-      const frameP = Math.min(1, Math.max(0, p / 0.96));
-      const frameIdx = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.floor(frameP * (TOTAL_FRAMES - 1))));
-
-      if (frameIdx !== currentFrameRef.current) {
-        currentFrameRef.current = frameIdx;
-        drawFrame(frameIdx);
-      }
-
-      // 2. Phase 1 & 2: Heading Animation
-      // - p in [0.00, 0.05]: Smooth fade-in (opacity 0 -> 1, translateY 20px -> 0px)
-      // - p in [0.05, 0.26]: Fully visible as drone approaches house (frames 15–78)
-      // - p in [0.26, 0.38]: Smooth fade-out (opacity 1 -> 0, translateY 0px -> -25px) as drone enters doorway
-      // - p >= 0.38: Completely hidden during interior hallway & chandelier sequence
-      if (headerRef.current) {
-        let headerOpacity = 0;
-        let headerTranslateY = 0;
-
-        if (p <= 0.05) {
-          const fadeInP = Math.max(0, p / 0.05);
-          headerOpacity = fadeInP;
-          headerTranslateY = (1 - fadeInP) * 20;
-        } else if (p <= 0.26) {
-          headerOpacity = 1;
-          headerTranslateY = 0;
-        } else if (p <= 0.38) {
-          const fadeOutP = (p - 0.26) / (0.38 - 0.26);
-          headerOpacity = Math.max(0, 1 - fadeOutP);
-          headerTranslateY = -fadeOutP * 25;
-        } else {
-          headerOpacity = 0;
-          headerTranslateY = -25;
+      const section = sectionRef.current;
+      if (section) {
+        const rect = section.getBoundingClientRect();
+        // Check if section is within the viewport range
+        if (rect.bottom >= 0 && rect.top <= window.innerHeight) {
+          const scrollableDistance = section.offsetHeight - window.innerHeight;
+          if (scrollableDistance > 0) {
+            const rawProgress = -rect.top / scrollableDistance;
+            const p = Math.min(1, Math.max(0, rawProgress));
+            if (Math.abs(p - lastProgress) > 0.0001) {
+              lastProgress = p;
+              updateProgress(p);
+            }
+          }
         }
-
-        headerRef.current.style.opacity = String(headerOpacity);
-        headerRef.current.style.transform = `translateY(${headerTranslateY}px)`;
-        headerRef.current.style.pointerEvents = headerOpacity > 0.05 ? 'auto' : 'none';
       }
 
-      // 3. Phase 3 & 4: 3 Feature Cards Animation
-      // - p < 0.70: Completely hidden during interior flight
-      // - p in [0.70, 0.80]: Smooth slide-up & fade-in (opacity 0 -> 1, translateY 40px -> 0px) as drone bursts onto the golf course (frames 215–245)
-      // - p in [0.80, 0.90]: Resting in place, fully readable across the lower third of panoramic golf course
-      // - p in [0.90, 0.97]: Smooth fade-out & slide-away before section completes
-      // - p in [0.97, 1.00]: Completely hidden (opacity 0), clean release into Selected Work section
-      if (cardsRef.current) {
-        let cardOpacity = 0;
-        let cardTranslateY = 0;
-
-        if (p < 0.70) {
-          cardOpacity = 0;
-          cardTranslateY = 40;
-        } else if (p <= 0.80) {
-          const fadeInP = (p - 0.70) / (0.80 - 0.70);
-          cardOpacity = fadeInP;
-          cardTranslateY = (1 - fadeInP) * 40;
-        } else if (p <= 0.90) {
-          cardOpacity = 1;
-          cardTranslateY = 0;
-        } else if (p <= 0.97) {
-          const fadeOutP = (p - 0.90) / (0.97 - 0.90);
-          cardOpacity = Math.max(0, 1 - fadeOutP);
-          cardTranslateY = -fadeOutP * 20;
-        } else {
-          cardOpacity = 0;
-          cardTranslateY = -20;
-        }
-
-        cardsRef.current.style.opacity = String(cardOpacity);
-        cardsRef.current.style.transform = `translateY(${cardTranslateY}px)`;
-        cardsRef.current.style.pointerEvents = cardOpacity > 0.1 ? 'auto' : 'none';
-      }
+      requestAnimationFrame(checkScroll);
     };
 
-    // Calculate progress directly from bounding client rect
-    const calculateProgress = () => {
-      const rect = section.getBoundingClientRect();
-      const scrollableDistance = section.offsetHeight - window.innerHeight;
-      if (scrollableDistance <= 0) return 0;
-      const rawProgress = -rect.top / scrollableDistance;
-      return Math.min(1, Math.max(0, rawProgress));
-    };
-
-    let rafId: number | null = null;
-    const handleScroll = () => {
-      if (rafId !== null) return;
-      rafId = requestAnimationFrame(() => {
-        rafId = null;
-        const p = calculateProgress();
-        updateProgress(p);
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll, { passive: true });
-    handleScroll();
-
+    const rafId = requestAnimationFrame(checkScroll);
     return () => {
-      if (rafId !== null) cancelAnimationFrame(rafId);
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
+      isRunning = false;
+      cancelAnimationFrame(rafId);
     };
-  }, [drawFrame, prefersReducedMotion]);
-
-  // Reduced motion static fallback: clean editorial showcase
-  if (prefersReducedMotion) {
-    return (
-      <section className="py-24 sm:py-32 bg-[#0a0a0a] text-neutral-100 border-b border-neutral-800">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8">
-          <div className="mb-12">
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-6 h-[2px] bg-[#FFB800]" />
-              <span className="text-xs font-mono uppercase tracking-[0.22em] font-semibold text-neutral-400">
-                AERIAL VISUALIZATION & CAPTURE
-              </span>
-            </div>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold uppercase tracking-tight text-white leading-[1.1]">
-              AERIAL PERSPECTIVES THAT <br />
-              ELEVATE DESTINATIONS
-            </h2>
-          </div>
-
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-neutral-900 mb-14 aspect-video border border-neutral-800">
-            <img
-              src={getFrameUrl(299)}
-              alt="Optic Sky UAV Aerial Championship Golf Course Showcase"
-              className="w-full h-full object-cover object-center"
-            />
-          </div>
-
-          {/* 3 Feature Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            <div className="bg-white text-neutral-900 border border-white/60 rounded-2xl p-7 sm:p-8 flex flex-col justify-between shadow-2xl">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="font-mono text-xs font-bold text-neutral-400 tracking-widest">01</span>
-                  <Camera size={20} className="text-neutral-800" />
-                </div>
-                <h3 className="font-display text-lg sm:text-xl lg:text-[22px] font-semibold text-neutral-900 mb-2 leading-[1.25]">
-                  Course & Turf Fidelity
-                </h3>
-                <p className="text-sm text-neutral-600 leading-relaxed font-normal">
-                  48MP high-dynamic-range aerial still photography capturing green contours, architectural boundaries, and landscape details.
-                </p>
-              </div>
-              <div className="mt-6 pt-4 border-t border-neutral-200 text-xs font-mono text-neutral-500 font-medium">
-                SENSOR: 48MP HDR // 8064 × 6048
-              </div>
-            </div>
-
-            <div className="bg-white text-neutral-900 border border-white/60 rounded-2xl p-7 sm:p-8 flex flex-col justify-between shadow-2xl">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="font-mono text-xs font-bold text-neutral-400 tracking-widest">02</span>
-                  <Film size={20} className="text-neutral-800" />
-                </div>
-                <h3 className="font-display text-lg sm:text-xl lg:text-[22px] font-semibold text-neutral-900 mb-2 leading-[1.25]">
-                  Cinematic Trajectories
-                </h3>
-                <p className="text-sm text-neutral-600 leading-relaxed font-normal">
-                  Fluid orbital reveals, low-altitude sweeps, and custom trajectory flights pre-planned around optimal sun azimuths.
-                </p>
-              </div>
-              <div className="mt-6 pt-4 border-t border-neutral-200 text-xs font-mono text-neutral-500 font-medium">
-                CINEMA: 4K 60FPS // 10-BIT D-LOG
-              </div>
-            </div>
-
-            <div className="bg-[#11120e] text-[#f4f3e8] border border-neutral-800 rounded-2xl p-7 sm:p-8 flex flex-col justify-between shadow-2xl">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="px-2.5 py-1 rounded-full bg-[#FFB800]/15 text-[#FFB800] border border-[#FFB800]/30 font-mono text-[10px] tracking-widest uppercase font-semibold">
-                    FAA PART 107 CERTIFIED
-                  </span>
-                  <ShieldCheck size={22} className="text-[#FFB800]" />
-                </div>
-                <h3 className="font-display text-lg sm:text-xl lg:text-[22px] font-semibold text-white mb-2 leading-[1.25]">
-                  Operational Compliance
-                </h3>
-                <p className="text-sm text-neutral-300 leading-relaxed font-normal">
-                  Fully licensed commercial UAV pilots with instant LAANC automated airspace authorization and $5,000,000 commercial liability coverage.
-                </p>
-              </div>
-              <div className="mt-6 pt-4 border-t border-neutral-800 text-xs font-mono text-[#FFB800] flex items-center justify-between font-medium">
-                <span>AIRSPACE READY // NATIONWIDE</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#FFB800]" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
+  }, [updateProgress]);
 
   return (
     <section
@@ -401,7 +298,7 @@ export const ElevateDestinations: React.FC<ElevateDestinationsProps> = () => {
           style={{ imageRendering: 'auto' }}
         />
 
-        {/* Ambient Depth Scrim Gradients for Visual Contrast & Cinematic Framing */}
+        {/* Ambient Depth Scrim Gradients for Contrast & Framing */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-black/50 pointer-events-none" />
 
         {/* Phase 1 & 2: Top Heading Overlay (Exterior approach to house; fades out before interior) */}
